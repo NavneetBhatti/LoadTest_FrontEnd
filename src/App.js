@@ -16,6 +16,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import Recording from "./Components/Recording";
 import Result from "./Components/Result";
 import CharactersList from "./pages/CharactersList";
+import Temp from "./Components/Temp";
 
 
 const App = () => {
@@ -28,7 +29,7 @@ const App = () => {
        <Route exact path="/test" component={Test} />
        <Route exact path="/" component={Home} />
        <Route exact path="/load" component={Load} />
-       <Route exact path="/recording" component={Recording} />
+       <Route exact path="/recording" component={Temp} />
        <Route exact path="/result" component={Result} />
 
        </Switch>

@@ -212,7 +212,7 @@ import { PlusOutlined } from '@ant-design/icons';
   };
   const onDeleteStudent = (record) => {
     Modal.confirm({
-      title: "Are you sure, you want to delete this student record?",
+      title: "Are you sure, you want to delete this record?",
       okText: "Yes",
       okType: "danger",
       onOk: () => {
@@ -251,7 +251,7 @@ import { PlusOutlined } from '@ant-design/icons';
         <Button onClick={onAddStudent}>Add a new test</Button>
 
         <Modal
-          title="Edit Student"
+          title="Edit Record"
           visible={isEditing}
           okText="Save"
           onCancel={() => {

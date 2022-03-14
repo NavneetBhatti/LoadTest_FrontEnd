@@ -6,6 +6,7 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import CharactersList from "../pages/CharactersList";
 import Search from "./Search";
+import Temp from "./Temp";
 
 
 // export default function home() {
@@ -303,6 +304,7 @@ import Search from "./Search";
       </header>
 
       <CharactersList />
+      <Temp />
 
     </div>
   );

@@ -49,4 +49,21 @@
   /* right: 832px; */
   right:150px;
 }
+.nestedTable{
+  margin-left:4%;
+}
+/* .nestedTable td{
+  background-color:red;
+  border:1px solid green;
+} */
 
+.one{
+width:50%;
+/* background-color:red;
+border:1px solid green; */
+}
+.two, .three{
+  width:25%;
+  /* background-color:blue;
+  border:1px solid yellow; */
+}

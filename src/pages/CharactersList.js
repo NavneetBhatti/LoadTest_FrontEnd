@@ -52,84 +52,67 @@ export default function CharactersList(){
     
     return(
       <div>
-           <h1>Recordings</h1>
-<table border="2"> 
-<tr>
-<th>Recording Name</th>
-  <th>Start time</th>
-  <th>End time</th>
-  <th>URL</th>
-
-  <th>URL Start time</th>
-
-  <th>URL End time</th>
-
-</tr>
+        <h1>Recordings</h1>
+        <table border="2"> 
+            <tr>
+                <th>Recording Name</th>
+                <th>Start time</th>
+                <th>End time</th>
+                <th>URL</th>
+                <th>URL Start time</th>
+                <th>URL End time</th>
+            </tr>
    
-           {data.allRecordings.map((character) => {
-               return(
-                 <>
-                    {/* <h1>Recordings 6</h1> */}
+            {data.allRecordings.map((character) => {
+            return(
+            <>
 
-    <tr>              
-              <td>   <h2>{character.name}</h2>  </td>
-              <td>    <h2>{character.startTime}</h2> </td>
-              <td>  <h2>{character.endTime}</h2> </td>
-              <td>
+            <tr>              
+                <td>   <h2>{character.name}</h2>  </td>
+                <td>    <h2>{character.startTime}</h2> </td>
+                <td>  <h2>{character.endTime}</h2> </td>
+                <td>
+                {character.urlInfoList.map((t) => {
+                return(
+                  <div>
+                    <td><h2>{t.url}</h2> </td>
+                  </div>
+                 );
+
+                })
+                }
+                </td>
+
+                <td>
                    {character.urlInfoList.map((t) => {
                       return(
-                        <div>
-                          {/* <tr> */}
-           <td>        <h2>{t.url}</h2> </td>
-           {/* <td>      <h2>{t.start}</h2> </td>
-            <td>      <h2>{t.end}</h2>  </td> */}
-                   </div>
+                      <div>
+                          <td><h2>{t.start}</h2> </td>
+                      </div>
                       );
                    })
                    }
-            </td>
+               </td>
 
-
-
-            <td>
+               <td>
                    {character.urlInfoList.map((t) => {
                       return(
-                        <div>
-                          {/* <tr> */}
-           {/* <td>        <h2>{t.url}</h2> </td> */}
-           <td>      <h2>{t.start}</h2> </td>
-            {/* <td>      <h2>{t.end}</h2>  </td>  */}
-                   </div>
+                      <div>
+                           <td><h2>{t.end}</h2>  </td> 
+                      </div>
                       );
                    })
                    }
-            </td>
+             </td>
 
+           </tr>
 
+            </> 
 
-            {/* ---------- */}
-            <td>
-                   {character.urlInfoList.map((t) => {
-                      return(
-                        <div>
-                          {/* <tr> */}
-           {/* <td>        <h2>{t.url}</h2> </td> */}
-           {/* <td>      <h2>{t.start}</h2> </td>*/}
-            <td>      <h2>{t.end}</h2>  </td> 
-                   </div>
-                      );
-                   })
-                   }
-            </td>
-
-          </tr>
-
-                 </> 
-
-               );
+            );
            })
           }
-</table>           
+      </table>           
       </div>
   )
 }
