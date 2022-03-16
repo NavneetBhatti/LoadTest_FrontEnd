@@ -16,134 +16,153 @@ import { PlusOutlined } from '@ant-design/icons';
   const [editingStudent, setEditingStudent] = useState(null);
   const [dataSource, setDataSource] = useState([
     {
-      id: 1,
+      key:'1',
       name: "Test1",
+      date:"2022-03-16",
       StartTime: "8:00 AM",
       Runs: "20",
       minutes: "30",
     },
     {
-      id: 2,
+      key:'2',
       name: "Test2",
+      date:"2022-03-16",
       StartTime: "8:30 AM",
       Runs: "30",
       minutes: "20",
     },
     {
-      id: 3,
+      key:'3',
       name: "Test3",
+      date:"2022-03-16",
       StartTime: "9:00 PM",
       Runs: "10",
       minutes: "25",
     },
     {
-      id: 4,
+      key:'4',
       name: "Test4",
+      date:"2022-03-16",
       StartTime: "5:00 AM",
       Runs: "10",
       minutes: "10",
     },
     {
-      id: 5,
+      key:'5',
       name: "Test4",
+      date:"2022-03-16",
       StartTime: "5:00 AM",
       Runs: "10",
       minutes: "10",
     },
     {
-      id: 6,
+      key:'6',
       name: "Test4",
+      date:"2022-03-16",
       StartTime: "5:00 AM",
       Runs: "10",
       minutes: "10",
     },
     {
-      id: 7,
+      key:'7',
       name: "Test4",
+      date:"2022-03-16",
       StartTime: "5:00 AM",
       Runs: "10",
       minutes: "10",
     },
     {
-      id: 8,
+      key:'8',
       name: "Test4",
+      date:"2022-03-16",
       StartTime: "5:00 AM",
       Runs: "10",
       minutes: "10",
     },
     {
-      id: 9,
+      key:'9',
       name: "Test4",
+      date:"2022-03-16",
       StartTime: "5:00 AM",
       Runs: "10",
       minutes: "10",
     },
     {
-      id: 10,
+      key:'10',
       name: "Test4",
+      date:"2022-03-16",
       StartTime: "5:00 AM",
       Runs: "10",
       minutes: "10",
     },
     {
-      id: 11,
+      key:'11',
       name: "Test4",
+      date:"2022-03-16",
       StartTime: "5:00 AM",
       Runs: "10",
       minutes: "10",
     },
     {
-      id: 12,
+      key:'12',
       name: "Test4",
+      date:"2022-03-16",
       StartTime: "5:00 AM",
       Runs: "10",
       minutes: "10",
     },
     {
-      id: 13,
+      key:'13',
       name: "Test4",
+      date:"2022-03-16",
       StartTime: "5:00 AM",
       Runs: "10",
       minutes: "10",
     },
     {
-      id: 14,
+      key:'14',
       name: "Test4",
+      date:"2022-03-16",
       StartTime: "5:00 AM",
       Runs: "10",
       minutes: "10",
     },
     {
-      id: 15,
+      key:'15',
       name: "Test4",
+      date:"2022-03-16",
       StartTime: "5:00 AM",
       Runs: "10",
       minutes: "10",
     },
     {
-      id: 16,
+      key:'16',
       name: "Test4",
+      date:"2022-03-16",
       StartTime: "5:00 AM",
       Runs: "10",
       minutes: "10",
     },
     {
-      id: 17,
+      key:'17',
       name: "Test4",
+      date:"2022-03-16",
       StartTime: "5:00 AM",
       Runs: "10",
       minutes: "10",
     },
     {
-      id: 18,
+      key:'18',
       name: "Test4",
+      date:"2022-03-16",
       StartTime: "5:00 AM",
       Runs: "10",
       minutes: "10",
     },
     {
-      id: 19,
+      key:'19',
       name: "Test4",
+      date:"2022-03-16",
       StartTime: "5:00 AM",
       Runs: "10",
       minutes: "10",
@@ -152,13 +171,13 @@ import { PlusOutlined } from '@ant-design/icons';
   const columns = [
     {
       key: "1",
-      title: "ID",
-      dataIndex: "id",
+      title: "Test Name",
+      dataIndex: "name",
     },
     {
       key: "2",
-      title: "Test Name",
-      dataIndex: "name",
+      title: "Date",
+      dataIndex: "date",
     },
     {
       key: "3",
@@ -247,7 +266,11 @@ import { PlusOutlined } from '@ant-design/icons';
       <header className="App-header">
 
 
-        <Table columns={columns} dataSource={dataSource} className="tableR"></Table>
+        <Table columns={columns} 
+        dataSource={dataSource} 
+        className="tableR" 
+        rowSelection={true}>
+        </Table>
         <Button onClick={onAddStudent}>Add a new test</Button>
 
         <Modal

@@ -64,13 +64,15 @@ export default function CharactersList(){
             </tr>
    
             {data.allRecordings.map((character) => {
+                              const update = new Date(character.endTime * 1000).toLocaleDateString('en-US');
+
             return(
             <>
-
             <tr>              
                 <td>   <h2>{character.name}</h2>  </td>
-                <td>    <h2>{character.startTime}</h2> </td>
-                <td>  <h2>{character.endTime}</h2> </td>
+                <td>    <h2>{character.startTime }</h2> </td>
+                {/* <td>  <h2>{character.endTime}</h2> </td> */}
+                      <td>  <h2>{update}</h2> </td>
                 <td>
                 {character.urlInfoList.map((t) => {
                 return(

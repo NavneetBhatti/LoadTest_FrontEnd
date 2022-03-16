@@ -30,6 +30,8 @@ const App = () => {
        <Route exact path="/" component={Home} />
        <Route exact path="/load" component={Load} />
        <Route exact path="/recording" component={Temp} />
+       {/* <Route exact path="/recording" component={CharactersList} /> */}
+
        <Route exact path="/result" component={Result} />
 
        </Switch>

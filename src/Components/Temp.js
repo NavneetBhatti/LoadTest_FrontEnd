@@ -46,30 +46,27 @@ query{
     
   // ]);  
 
+  
 
 
   const [dataSource, setDataSource] = useState(  
+    
     data.allRecordings.map(row => ({
+
     key: row.id.toString(),
     name: row.name,
-    StartTime: row.startTime,
-    EndTime: row.endTime ,
-    // URL:  row.urlInfoList.map((t)=>{  
-    //       return (t.url);  
-    //        })
+    StartTime: new Date(row.startTime).toLocaleTimeString("en-US"),
+    EndTime: new Date(row.endTime).toLocaleTimeString("en-US"),
     URL:  row.urlInfoList.map((t)=>
           <li>{t.url}</li>  
              )  ,   
     UrlStartTime:  row.urlInfoList.map((t)=>
-             <li>{t.start}</li>  
+             <li>{new Date(t.start).toLocaleTimeString("en-US")}</li>  
                       )  ,  
     UrlEndTime:  row.urlInfoList.map((t)=>
-              <li>{t.end}</li>  
+              <li>{new Date(t.end).toLocaleTimeString("en-US")}</li>  
                         )                               
-          
-
-  }))          
-  
+     }))          
   );
 
   
@@ -175,11 +172,12 @@ return (
       <th class="two">Url Start Time</th>
       <th class="three">URL End Time</th>
     </tr>
-      <tr>   
+      <tr class= "trv">   
        <td class="one">{record.URL}</td>
       <td class="two">{record.UrlStartTime}</td>
       <td class="three">{record.UrlEndTime}</td>
       </tr>
+     
       </table>
 
   );
@@ -195,5 +193,5 @@ return (
   );
 }
 
-export default Temp;
+export default Temp;  
 
