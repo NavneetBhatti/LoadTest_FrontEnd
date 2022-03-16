@@ -49,9 +49,38 @@ query{
   
 
 
-  const [dataSource, setDataSource] = useState(  
+  // const [dataSource, setDataSource] = useState(  
     
-    data.allRecordings.map(row => ({
+  //   data.allRecordings.map(row => ({
+
+  //   key: row.id.toString(),
+  //   name: row.name,
+  //   StartTime: new Date(row.startTime).toLocaleTimeString("en-US"),
+  //   EndTime: new Date(row.endTime).toLocaleTimeString("en-US"),
+  //   URL:  row.urlInfoList.map((t)=>
+  //         <li>{t.url}</li>  
+  //            )  ,   
+  //   UrlStartTime:  row.urlInfoList.map((t)=>
+  //            <li>{new Date(t.start).toLocaleTimeString("en-US")}</li>  
+  //                     )  ,  
+  //   UrlEndTime:  row.urlInfoList.map((t)=>
+  //             <li>{new Date(t.end).toLocaleTimeString("en-US")}</li>  
+  //                       )                               
+  //    }))          
+  // );
+
+
+  const [state, setstate] = useState([]);
+  const [loading2, setloading] = useState(true);
+  useEffect(() => {
+    getData();
+  }, [loading, data]);
+
+  const getData = async () => {
+    
+    setloading(false);
+        setstate(
+            data.allRecordings.map(row => ({
 
     key: row.id.toString(),
     name: row.name,
@@ -68,6 +97,14 @@ query{
                         )                               
      }))          
   );
+
+
+
+
+
+      
+     
+  };
 
   
 
@@ -96,24 +133,7 @@ query{
       title: "End Time",
       dataIndex: "EndTime",
     },
-    // {
-    //   key: "4",
-    //   title: "URL",
-    //   dataIndex: "URL",
-
-    // },
-    // {
-    //   key: "5",
-    //   title: "URL Start Time",
-    //   dataIndex: "UrlStartTime",
-
-    // },
-    // {
-    //   key: "6",
-    //   title: "URL End Time",
-    //   dataIndex: "UrlEndTime",
-
-    // },
+    
     {
       key: "4",
       title: "Actions",
@@ -139,7 +159,7 @@ query{
       okText: "Yes",
       okType: "danger",
       onOk: () => {
-        setDataSource((pre) => {
+        setstate((pre) => {
           return pre.filter((student) => student.id !== record.id);
         });
       },
@@ -159,9 +179,8 @@ return (
           {/* <input type="text" value={q} onChange={(e)=>setQ(e.target.value)}/> */}
        <header className="App-header">
         
-        {/* <Table columns={columns} dataSource={dataSource} className="tableR"></Table> */}
-
-        <Table columns={columns} dataSource={search(dataSource)} className="tableR" 
+       
+        <Table columns={columns} dataSource={state} className="tableR" 
         expandable={{
         expandedRowRender: (record) => {
     

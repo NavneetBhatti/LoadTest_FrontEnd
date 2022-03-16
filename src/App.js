@@ -33,6 +33,7 @@ const App = () => {
        {/* <Route exact path="/recording" component={CharactersList} /> */}
 
        <Route exact path="/result" component={Result} />
+       <Route exact path="/user" component={CharactersList} />
 
        </Switch>
     </Router>
