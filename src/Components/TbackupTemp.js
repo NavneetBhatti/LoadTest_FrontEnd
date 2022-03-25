@@ -164,34 +164,32 @@ return (
         
         {/* <Table columns={columns} dataSource={dataSource} className="tableR"></Table> */}
 
-        <Table columns={columns} dataSource={search(dataSource)} className="tableR" 
- expandable={{
-  expandedRowRender: (record) => {
+      <Table columns={columns} dataSource={search(dataSource)} className="tableR" 
+              expandable={{
+              expandedRowRender: (record) => {
     
-  return(
-    <table class="nestedTable"> 
-    <tr>   
-      <th class="one">URL</th>
-      <th class="two">Url Start Time</th>
-      <th class="three">URL End Time</th>
-    </tr>
-      <tr>   
-       <td class="one">{record.URL}</td>
-      <td class="two">{record.UrlStartTime}</td>
-      <td class="three">{record.UrlEndTime}</td>
-      </tr>
-      </table>
+              return(
+              <table class="nestedTable"> 
+                <tr>   
+                  <th class="one">URL</th>
+                  <th class="two">Url Start Time</th>
+                  <th class="three">URL End Time</th>
+               </tr>
+               <tr>   
+                  <td class="one">{record.URL}</td>
+                  <td class="two">{record.UrlStartTime}</td>
+                  <td class="three">{record.UrlEndTime}</td>
+               </tr>
+              </table>
+              );
+             }
+            }}>
 
-  );
+      </Table>
 
-    }
-}}></Table>
-
-       
       </header>
-
-     
-    </div>
+    
+      </div>
   );
 }
 
