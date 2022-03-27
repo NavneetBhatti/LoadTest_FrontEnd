@@ -8,7 +8,7 @@ import Search from "./Search";
 import { useQuery,gql } from "@apollo/client"
 
 
-const GET_Recording =  gql`
+export const GET_Recording =  gql`
 query{
   allRecordings{
     id

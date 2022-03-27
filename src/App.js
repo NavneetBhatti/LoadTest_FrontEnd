@@ -17,6 +17,7 @@ import Recording from "./Components/Recording";
 import Result from "./Components/Result";
 import CharactersList from "./pages/CharactersList";
 import Temp from "./Components/Temp";
+import { AddComment } from "./Components/AddComment";
 
 
 const App = () => {
@@ -33,7 +34,7 @@ const App = () => {
        {/* <Route exact path="/recording" component={CharactersList} /> */}
 
        <Route exact path="/result" component={Result} />
-       <Route exact path="/user" component={CharactersList} />
+       <Route exact path="/user" component={AddComment} />
 
        </Switch>
     </Router>
