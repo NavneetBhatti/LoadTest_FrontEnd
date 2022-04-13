@@ -19,8 +19,8 @@
   margin-top:2%;
 }
 .search{
-  width:30%;
-  margin-top:5%;
+  width:30%; 
+  /* margin-top:5%; */
   margin-right: 50%;
 
 }
@@ -67,9 +67,38 @@ width:50%;
   /* background-color:blue;
   border:1px solid yellow; */
 }
-.trv{
- /* border:3px solid green;
-  background-color:pink;  */
+.recordingHeading{
+ margin-right: 10%;
+ margin-top: 3%;
+}
+.formItems{
+  border: 1px solid black;
+  padding:20px;
+  width:60%;
+}
+.Col1{
+  /* border:1px solid red; */
+  padding-left: 20px;
+}
+/* .Col2{
+  border:1px solid green;
+}
+.Col3{
+  border:1px solid blue;
+}
+h1{
+  border:1px solid blue;
 
-  
+} */
+.row2{
+  margin-top:30px;
+}
+.formBtn{
+  /* border:1px solid red; */
+  margin-top:20px;
+}
+.back{
+  margin-top:110%;
+  margin-right:15%;
+
 }

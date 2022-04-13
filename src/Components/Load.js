@@ -4,28 +4,40 @@ import { useHistory } from "react-router-dom";
 import React from 'react';
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+import { useParams } from "react-router-dom";
+import { useState,useEffect } from "react";
+import{ Row ,Col} from "antd";
+import { Card } from 'antd';
+
+
+
+
+
 
 const ADD_COMMENT =gql`
-mutation($name: String, $startTime: Float, $endTime: Float, $start:Float, $end:Float, $url: String){
-    addRecording(input: {
-      name: $name
-      startTime: $startTime
-      endTime: $endTime
-      urlInfoList: {
-        start: $start
-        end: $end
-        url: $url
-      }
-      
-    })
+mutation($name: String!, $recordId: String!, $noOfUsers: Int!, $totalMints:Int!){
+  addLoadTest(input: {
+    name: $name
+		recordId:$recordId
+    noOfUsers: $noOfUsers
+    totalMints: $totalMints
+  }){
+    id
+    name
+    status
+    totalMints
+    noOfUsers
   }
+}
 `;
 
-const Load=()=>
+const Load=({state})=>
  {
-
+  const{ id ,name} = useParams();
+    console.log(id)
   const[addComment, { data }] = useMutation(ADD_COMMENT);
 
+  const[test, setTest] =useState({})
   // const history = useHistory();
   // const navigateTo = () => history.push('/');//eg.history.push('/login');
 
@@ -37,7 +49,7 @@ const Load=()=>
         console.log(values)
         // e.preventDefault();
         addComment({
-          variables : {name: values.name, startTime:values.startTime, endTime:values.endTime, start:values.start, end:values.end, url:values.url }
+          variables : {name: values.name, recordId:id, noOfUsers:values.noOfUsers, totalMints:values.totalMints }
 
         })
                 console.log("test3-----");
@@ -48,165 +60,98 @@ const Load=()=>
     
   return (
     <div className="App">
-      <header className="App-header">
-        <h2>Add new test</h2>
+
+        <Row className="recordingHeading">
+            <Col span={6} offset={5} className="Col1" ><h1><b>Add New Test</b></h1></Col>
+            {/* <Col span={15}><h1><b>Add New Test</b></h1></Col> */}
+
+        </Row>
+
+        <Row className="row2">
+            <Col span={4} offset={5}  className="Col2"><h2><b>Test Settings</b></h2>
+            <button className="back">back</button>
+            </Col>
+       
+      
+<Col span={15} className="Col3">
+      <header >
+        {/* <h2>{ name }</h2> */}
+      
         <Form
           autoComplete="off"
-          labelCol={{ span: 10 }}
-          wrapperCol={{ span: 14 }}
+          layout="vertical"
+          // labelCol={{ span: 5}}
+          // wrapperCol={{ span: 5 }}
           onFinish={onSubmit}
          >
-          <Form.Item
+
+           <div className="formItems">
+            <Form.Item
             name="name"
-            label="Test Name"
+            label="Laod Test Name"
             rules={[
               {
                 required: true,
-                message: "Please enter test name",
+                message: "Please enter name of Load Test",
               },
               { whitespace: true },
-              { min: 3 },
+              { min: 4 },
             ]}
             hasFeedback
           >
-            <Input placeholder="Type test name" />
+            {/* <Input placeholder="Type test name"  defaultValue={id}/> */}
+            <Input placeholder="e.g. LoadTest 1" />
+
           </Form.Item>
 
           <Form.Item
-            name="startTime"
-            label="Start Time"
+            name="noOfUsers"
+            label="Concurrent Users"
             rules={[
               {
                 required: true,
-                message: "Please enter date",
+                message: "Please enter number of concurrent users",
               },
             ]}
             hasFeedback
           >
-              <Input placeholder="Type start time" />
+              <Input placeholder="e.g. 20" />
 
           </Form.Item>
-           {/* <Form.Item
-            name="startTime"
-            label="Start Time"
-            rules={[
-              {
-                required: true,
-                message: "Please enter date",
-              },
-            ]}
-            hasFeedback
-          >
-            <TimePicker
-              style={{ width: "100%" }}
-              picker="date"
-              placeholder="Chose time "
-            /> */}
-            
-          {/* </Form.Item> */}
+          
 
           <Form.Item
-            name="endTime"
-            label="End Time"
+            name="totalMints"
+            label="Duration(min)"
             rules={[
               {
                 required: true,
-                message: "Please enter date",
+                message: "Please enter Duration",
               },
             ]}
             hasFeedback
           >
-             <Input placeholder="Type end time" />
+             <Input placeholder="e.g. 5" />
 
           </Form.Item>
 
-          {/* <Form.Item>
-            <TimePicker
-              style={{ width: "100%" }}
-              picker="date"
-              placeholder="Chose time "
-            />
-            
-          </Form.Item> */}
+          </div>
+
+
          
-
-          <Form.Item
-            name="start"
-            label="Users"
-            rules={[
-              {
-                required: true,
-                message: "Please enter no. of runs",
-              },
-              { whitespace: true },
-              { min: 1 },            ]}
-            hasFeedback
-          >
-            <Input placeholder="Type Runs" />
-          </Form.Item>
-
-          <Form.Item
-            name="end"
-            label="Total minutes"
-            rules={[
-              {
-                required: true,
-                message: "Please enter total minutes",
-              },
-              { whitespace: true },
-              { min: 1 },            ]}
-            hasFeedback
-          >
-            <Input placeholder="Type total minutes" />
-          </Form.Item>
-
-          
-          {/* <Form.Item
-            name="date"
-            label="Date"
-            rules={[
-              {
-                required: true,
-                message: "Please enter date",
-              },
-            ]}
-            hasFeedback
-          >
-            <DatePicker
-              style={{ width: "100%" }}
-              picker="date"
-              placeholder="Chose date "
-            /> */}
-            
-            
-
-          <Form.Item
-            name="url"
-            label="url"
-            rules={[
-              {
-                required: true,
-                message: "Please enter test name",
-              },
-              { whitespace: true },
-              { min: 3 },
-            ]}
-            hasFeedback
-          >
-            <Input placeholder="Type url" />
-          </Form.Item>
-          
-
-          
-
-          <Form.Item wrapperCol={{ span: 24 }}>
+          <Form.Item wrapperCol={{ span: 3 }} className="formBtn">
             <Button block type="primary" htmlType="submit" >
               Add Test
             </Button>
 
           </Form.Item>
+          
         </Form>
       </header>
+
+        </Col>
+      </Row>
+
     </div>
   );
 }

@@ -27,3 +27,54 @@ export default Video;
 //       }
 //     }
 //   }
+
+
+
+const columnsUrl = [
+    {
+      key: "6",
+      title: "url",
+      dataIndex: "URL",
+  
+    },
+    {
+      key: "7",
+      title: "Start Time",
+      dataIndex: "UrlStartTime",
+  
+    },
+    {
+      key: "8",
+      title: "End Time",
+      dataIndex: "UrlEndTime",
+    },
+]
+
+//fetch data
+const getData = async () => {
+    setloading(false);
+        setstate(
+  
+            data.allRecordings.map(row => ({
+  
+    key: row.id.toString(),
+    name: row.name,
+    StartTime: new Date(row.startTime).toLocaleTimeString("en-US"),
+    EndTime: new Date(row.endTime).toLocaleTimeString("en-US"),
+    urlID:  row.urlInfoList.map((t)=>
+        <li>{t.id}</li> 
+          )  ,  
+    URL:  row.urlInfoList.map((t)=>
+          <li>{t.url}</li> 
+             )  ,  
+    UrlStartTime:  row.urlInfoList.map((t)=>
+             <li>{new Date(t.start).toLocaleTimeString("en-US")}</li> 
+                      )  , 
+    UrlEndTime:  row.urlInfoList.map((t)=>
+              <li>{new Date(t.end).toLocaleTimeString("en-US")}</li> 
+                        ) 
+     }))         
+  );
+ 
+  };
+   

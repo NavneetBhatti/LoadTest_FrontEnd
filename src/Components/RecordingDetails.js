@@ -12,7 +12,7 @@ import { useParams } from "react-router-dom";
 
 export const GET_Recording =  gql`
 {
-    getRecording(id:"dfdeee79-20a2-4187-b468-558d93bcf125"){
+    getRecording(id:$id){
       urlInfoList{
         id
         url
@@ -26,8 +26,14 @@ export const GET_Recording =  gql`
 
 
  function RecordingDetails() {
+    const id='dfdeee79-20a2-4187-b468-558d93bcf125';
 
-    const {error, data , loading} = useQuery(GET_Recording)
+    const { loading, data } = useQuery(GET_Recording, {
+        variables: { id: 'dfdeee79-20a2-4187-b468-558d93bcf125'},
+      });
+    
+
+    // const {error, data , loading} = useQuery(GET_Recording)
 
     const history = useHistory();
     const [q, setQ] = useState("");

@@ -1,0 +1,21 @@
+<>
+        <Button type="primary" onClick={() => setVisible(true)}> Details     </Button>       
+
+
+      <Modal
+        title={record.name}
+        centered
+        visible={visible}
+        onOk={() => setVisible(false)}
+        onCancel={() => setVisible(false)}
+        width={1000}
+      >
+        <p>{record.URL}</p>
+        <p>{record.name}</p>
+        <p>{record.id}</p>
+
+        <p>some contents...</p>
+        {/* <Table columns={columns} dataSource={state} className="tableR" rowSelection={true}></Table> */}
+
+      </Modal>
+      </>
