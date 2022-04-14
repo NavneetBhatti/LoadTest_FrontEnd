@@ -7,7 +7,8 @@ import { gql } from "apollo-boost";
 import { useParams } from "react-router-dom";
 import { useState,useEffect } from "react";
 import{ Row ,Col} from "antd";
-import { Card } from 'antd';
+import {Link } from "react-router-dom";
+
 
 
 
@@ -36,11 +37,10 @@ const Load=({state})=>
   const{ id ,name} = useParams();
     console.log(id)
   const[addComment, { data }] = useMutation(ADD_COMMENT);
+  
 
   const[test, setTest] =useState({})
-  // const history = useHistory();
-  // const navigateTo = () => history.push('/');//eg.history.push('/login');
-
+  
 
 
 
@@ -53,9 +53,11 @@ const Load=({state})=>
 
         })
                 console.log("test3-----");
-                alert("data added successfully")
+                alert("Test added successfully")
 
     }
+
+
     
     
   return (
@@ -63,13 +65,16 @@ const Load=({state})=>
 
         <Row className="recordingHeading">
             <Col span={6} offset={5} className="Col1" ><h1><b>Add New Test</b></h1></Col>
-            {/* <Col span={15}><h1><b>Add New Test</b></h1></Col> */}
+            <Col span={6} offset={5} className="Col4" ><h2 className="h4"><b>{name}</b></h2></Col>
 
         </Row>
 
         <Row className="row2">
             <Col span={4} offset={5}  className="Col2"><h2><b>Test Settings</b></h2>
-            <button className="back">back</button>
+            <Link to={'/recording'}>
+                  <Button className="back" >Back</Button>
+            </Link>
+
             </Col>
        
       
@@ -86,13 +91,17 @@ const Load=({state})=>
          >
 
            <div className="formItems">
+          
+            {/* <h2 className="rec">{name}</h2> */}
+           
+
             <Form.Item
             name="name"
             label="Laod Test Name"
             rules={[
               {
                 required: true,
-                message: "Please enter name of Load Test",
+                message: "Please enter name of Load Test Name",
               },
               { whitespace: true },
               { min: 4 },
@@ -140,7 +149,7 @@ const Load=({state})=>
 
          
           <Form.Item wrapperCol={{ span: 3 }} className="formBtn">
-            <Button block type="primary" htmlType="submit" >
+            <Button block type="primary" htmlType="submit" className="formBtn2">
               Add Test
             </Button>
 

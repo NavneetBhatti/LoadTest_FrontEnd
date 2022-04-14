@@ -31,7 +31,7 @@ const suffix = (
       onSearch={onSearch}
       className="search"
     /> */}
-    <Search placeholder="input search text" onSearch={onSearch} enterButton       className="search" />
+    <Search placeholder="" onSearch={onSearch} enterButton       className="search" />
 
     </div>
   );

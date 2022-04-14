@@ -72,7 +72,7 @@ width:50%;
  margin-top: 3%;
 }
 .formItems{
-  border: 1px solid black;
+  border: 1px solid #C0C0C0		;
   padding:20px;
   width:60%;
 }
@@ -90,15 +90,37 @@ h1{
   border:1px solid blue;
 
 } */
+/* .Col4{
+  border:1px solid blue;
+  padding-left:10px
+} */
 .row2{
   margin-top:30px;
 }
 .formBtn{
   /* border:1px solid red; */
   margin-top:20px;
+ 
 }
-.back{
-  margin-top:110%;
-  margin-right:15%;
 
+.back{
+  margin-top:116%;
+  margin-right:2%;
+  width:45%;
 }
+.col4{
+  /* border:1px solid red; */
+  /* padding-left:6px; */
+  /* padding-right:80px; */
+}
+.rec{
+  margin:0px;
+  background-color: grey;
+  /* padding-left: 10px;
+  position: relative;
+  right:36%; */
+}
+/* .h4{
+  border:1px solid red;
+  padding:0px;
+} */

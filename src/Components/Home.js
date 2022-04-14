@@ -1,6 +1,6 @@
 import "antd/dist/antd.css";
 import "../App.css";
-import { Button, Table, Modal, Input, Row } from "antd";
+import { Button, Table, Modal, Input, Row ,Col} from "antd";
 import { useState,useEffect } from "react";
 import { EditOutlined, DeleteOutlined,PlusOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
@@ -190,8 +190,13 @@ const runLoadTest = async () => {
 return (
  
      <div className="App">
-       <Search search={search}/>
-       <header className="App-header">
+        <Row className="recordingHeading">
+            <Col span={9} className="col4"><h1><b>All Tests</b></h1></Col>
+        </Row>
+     
+        <Search search={search}/>       
+        
+        <header className="App-header">
       
        <Table columns={columns} dataSource={state} className="tableR" > </Table>
     

@@ -28,9 +28,9 @@ query{
  }
 }
 `
- 
- 
- 
+
+
+
 function Temp() {
  const [isModalVisible, setIsModalVisible] = useState(false);
  const [data2, setdata] = useState([]);
@@ -99,48 +99,56 @@ const columns = [
      key: "1",
      title: "Recording Name",
      dataIndex: "name",
- 
+     align: 'center'
+
    },
    {
      key: "2",
      title: "Start Time",
      dataIndex: "StartTime",
+     align: 'center'
  
    },
    {
      key: "3",
      title: "End Time",
      dataIndex: "EndTime",
+     align: 'center'
+
    },
    {
  
      key: 'key',
      title: "Actions",
+     align: 'center',
+
      dataIndex: 'key',
-  
+
     render: (index,record) => {
       return (
         <>
-          <Button type="primary" onClick={() => showModal(record)}>
+          <Button type="primary" onClick={() => showModal(record)}  style={{marginRight:"0px"}}>
              Details
           </Button>
 
           <Link to={`/load/${record.key}/${record.name}`}>
-              <Button type="primary"   onClick={() => {onAddRecord(record); }} style={{marginLeft:"5px"}}>
+              <Button type="primary"   onClick={() => {onAddRecord(record); }} style={{marginLeft:"15px"}}>
                 Add Test
               </Button>
           </Link>
-          <Link to={`/recordingDetails/${record.key}/${record.name}`}>
+          {/* <Link to={`/recordingDetails/${record.key}/${record.name}`}>
               <Button type="primary"    style={{marginLeft:"5px"}}>
-                det
+                details
               </Button>
-          </Link>
+          </Link> */}
 
 
-          {/* <DeleteOutlined
-            
-            style={{ color: "red", marginLeft: 12 }}
-          /> */}
+          <DeleteOutlined
+            onClick={() => {
+              onDeleteRecord(record);
+            }}
+            style={{ color: "red" ,paddingLeft: "90px"}}
+          />
         </>
       );
     },
@@ -180,7 +188,7 @@ const onAddRecord = (record) => {
  //delete recording
  const onDeleteRecord = (record) => {
    Modal.confirm({
-     title: "Are you sure, you want to delete this  record?",
+     title: "Are you sure, you want to delete this Recording?",
      okText: "Yes",
      okType: "danger",
      onOk: () => {
@@ -211,7 +219,7 @@ return (
          {/* <input type="text" value={q} onChange={(e)=>setQ(e.target.value)}/> */}
        <header className="App-header">
       
-       <Table columns={columns} dataSource={state} className="tableR" >
+       <Table columns={columns} dataSource={state} className="tableR"  align='center' >
  
        </Table>
     
@@ -229,7 +237,7 @@ return (
          <tr>
              <th>URL</th>
              <th>Start Time</th>
-             <th>Url EndTime</th>
+             <th>End Time</th>
  
            </tr>
            <tr>
