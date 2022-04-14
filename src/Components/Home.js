@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import Search from "./Search";
 import { useQuery,gql } from "@apollo/client"
  
-export const GET_Recording =  gql`
+export const GET_LoadTests =  gql`
 query{
   allLoadTest{
     id
@@ -21,14 +21,31 @@ query{
 `
 
 
+export const Run_loadTest =  gql`
+query($id : String)
+{
+  runLoadTest(id: $id)
+}
+`
+
+
+
+
  
  
  
 function Home() {
-  const {error, data , loading} = useQuery(GET_Recording)
+  const {error, data , loading} = useQuery(GET_LoadTests)
+  
   const [q, setQ] = useState("");
   const [state, setstate] = useState([]);
   const [loading2, setloading] = useState(true);
+  const [test, setTest] = useState([]);
+  const[loadTest, setLoadTest] = useState([]);
+  const { loading3, data3 } = useQuery(Run_loadTest, {
+    variables: { id: test},
+  });
+
  useEffect(() => {
    getData();
  }, [loading, data]);
@@ -83,9 +100,11 @@ const columns = [
   },
   
   {
-    key: "6",
+    key: 'key',
     title: "Actions",
-    render: (record) => {
+    dataIndex: 'key',
+
+    render: (index,record) => {
       return (
         <>
           <EditOutlined
@@ -95,26 +114,31 @@ const columns = [
             
             style={{ color: "red", marginLeft: 12 }}
           />
+
+        <Button type="primary" onClick={() => runTest(record)}  style={{marginLeft:"50px"}}>
+            Run Test
+         </Button>
+          
         </>
       );
     },
   },
-  {
+  // {
  
-    key: 'key',
-    title: "Run Test",
-    dataIndex: 'key',
+  //   key: 'key',
+  //   title: "Run Test",
+  //   dataIndex: 'key',
  
-   render: (index,record) => {
-     return (
-       <>
-         <Button type="primary" onClick={() => runTest(record)}>
-            Run Test
-         </Button>
-       </>
-     );
-   },
-  },
+  //  render: (index,record) => {
+  //    return (
+  //      <>
+  //        <Button type="primary" onClick={() => runTest(record)}>
+  //           Run Test
+  //        </Button>
+  //      </>
+  //    );
+  //  },
+  // },
   
  ];
  
@@ -126,9 +150,38 @@ function search(rows){
 
 //run test
 const runTest = (record) => {
-  console.log(record);
-  // setmodaldata(record);
-  // setIsModalVisible(true);
+  console.log("---run test **")
+  console.log(record.key);
+  setTest(record.key);
+  // addComment({
+  //   variables : {name: values.name, recordId:id, noOfUsers:values.noOfUsers, totalMints:values.totalMints }
+
+  // })
+};
+
+useEffect(() => {
+  runLoadTest();
+}, [loading, data3]);
+
+//run  load test
+const runLoadTest = async () => {
+  setloading(false);
+      setLoadTest(
+     data3.Run_loadTest.map(row => ({
+
+      runLoadTest:row.runLoadTest,
+        
+
+  //  data.allLoadTest.map(row => ({
+
+  // key: row.id.toString(),
+  // name: row.name,
+  // recordId: row.recordId,
+  // noOfUsers: row.noOfUsers,
+  // totalMints:  row.totalMints,
+  // status:  row.status
+   }))         
+);
 };
  
  

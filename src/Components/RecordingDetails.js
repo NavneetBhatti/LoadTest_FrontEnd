@@ -10,25 +10,9 @@ import {Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 
-// export const GET_Recording =  gql`
-// {
-    
-//     query($id : ID! ){
-//            getRecording(id:$id){
-//              urlInfoList{
-//                id
-//                url
-//                start
-//                end
-//              }
-//            }
-//          }
-//     }
-// `
-
 export const GET_Recording =  gql`
-{
-    getRecording(id:"a0bdc1bd-0004-4efe-9a10-0defe3a112cd"){
+query($id : ID! ){
+    getRecording(id:$id){
       urlInfoList{
         id
         url
@@ -39,16 +23,40 @@ export const GET_Recording =  gql`
   }
 `
 
+// export const GET_Recording =  gql`
+// {
+//     getRecording(id:"a0bdc1bd-0004-4efe-9a10-0defe3a112cd"){
+//       urlInfoList{
+//         id
+//         url
+//         start
+//         end
+//       }
+//     }
+//   }
+// `
+
 
  function RecordingDetails() {
-    const id='dfdeee79-20a2-4187-b468-558d93bcf125';
+    const{ id ,name} = useParams();
+
+    // const id='dfdeee79-20a2-4187-b468-558d93bcf125';
 
     // const { loading, data } = useQuery(GET_Recording, {
     //     variables: { id: "dfdeee79-20a2-4187-b468-558d93bcf125"},
     //   });
+    const { loading, data } = useQuery(GET_Recording, {
+        variables: { id: id},
+      });
+    
+    useEffect(() => {
+        if (data && data?.post) {
+           console.log("data: ", data?.post);
+        }
+    }, [data]);
     
 
-    const {error, data , loading} = useQuery(GET_Recording)
+    //const {error, data , loading} = useQuery(GET_Recording)
 
     const history = useHistory();
     const [q, setQ] = useState("");
@@ -117,9 +125,10 @@ const columns = [
 return (
    
       <div className="App">
-        
+
         <header className="App-header">
-        
+        <h3>Recording Details of {name}</h3>
+
         <Table columns={columns} dataSource={state} className="tableR" rowSelection={true}>
 
         </Table>

@@ -10,6 +10,7 @@ const Details = () =>{
   const [data, setdata] = useState([]);
   const [modaldata, setmodaldata] = useState([]);
 
+
   const columns = [
     {
       title: 'Name',

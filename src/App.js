@@ -38,7 +38,7 @@ const App = () => {
 
        <Route exact path="/result" component={Result} />
        <Route exact path="/user" component={AddComment} />
-       <Route exact path="/recordingDetails/:id" component={RecordingDetails} />
+       <Route exact path="/recordingDetails/:id/:name" component={RecordingDetails} />
        <Route exact path="/details" component={Details} />
 
 

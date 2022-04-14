@@ -130,15 +130,12 @@ const columns = [
                 Add Test
               </Button>
           </Link>
+          <Link to={`/recordingDetails/${record.key}/${record.name}`}>
+              <Button type="primary"    style={{marginLeft:"5px"}}>
+                det
+              </Button>
+          </Link>
 
-          {/* <Link to={`/load/${record.key}/${record.name}`}>
-           <PlusOutlined
-             onClick={() => {
-               onAddRecord(record);
-             }}
-             style={{ color: "blue", marginLeft: 12 }}
-           />
-         </Link> */}
 
           {/* <DeleteOutlined
             
