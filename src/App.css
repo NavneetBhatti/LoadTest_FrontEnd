@@ -110,8 +110,8 @@ h1{
 }
 .col4{
   /* border:1px solid red; */
-  /* padding-left:6px; */
-  /* padding-right:80px; */
+  padding-left:6px; 
+   padding-right:80px;
 }
 .rec{
   margin:0px;
@@ -124,3 +124,6 @@ h1{
   border:1px solid red;
   padding:0px;
 } */
+td { 
+  padding: 20px;
+}

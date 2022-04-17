@@ -7,7 +7,6 @@ import { useHistory } from "react-router-dom";
 import Search from "./Search";
 import { useQuery,gql } from "@apollo/client"
 import {Link } from "react-router-dom";
-import { AlignType } from 'rc-table/lib/interface'
 
 
 
@@ -31,7 +30,7 @@ query{
 
 
 
-function Temp() {
+function Recordings() {
  const [isModalVisible, setIsModalVisible] = useState(false);
  const [data2, setdata] = useState([]);
  const [modaldata, setmodaldata] = useState([]);
@@ -136,11 +135,6 @@ const columns = [
                 Add Test
               </Button>
           </Link>
-          {/* <Link to={`/recordingDetails/${record.key}/${record.name}`}>
-              <Button type="primary"    style={{marginLeft:"5px"}}>
-                details
-              </Button>
-          </Link> */}
 
 
           <DeleteOutlined
@@ -154,23 +148,6 @@ const columns = [
     },
    },
   
-  //  {
-  //    key: "5",
-  //    title: "Actions",
-  //    align: "center",
- 
-  //    render: (record) => {
-  //      return (
-      
-  //          <DeleteOutlined
-  //            onClick={() => {
-  //              onDeleteRecord(record);
-  //            }}
-  //            style={{ color: "red", marginLeft: 12 }}
-  //          />
-  //      );
-  //    },
-  //  },
   
  ];
 
@@ -216,7 +193,6 @@ return (
 
 
        <Search search={search}/>
-         {/* <input type="text" value={q} onChange={(e)=>setQ(e.target.value)}/> */}
        <header className="App-header">
       
        <Table columns={columns} dataSource={state} className="tableR"  align='center' >
@@ -233,7 +209,7 @@ return (
        onCancel={handleCancel}
        width={1000}
        >
-         <table border="1">
+         <table border="0">
          <tr>
              <th>URL</th>
              <th>Start Time</th>
@@ -248,9 +224,6 @@ return (
            </tr>
          </table>
      
-         {/* <Table columns={columns} dataSource={modaldata.URL} className="tableR" > */}
- 
-{/* </Table> */}
  
       
      </Modal>
@@ -262,5 +235,5 @@ return (
  );
 }
  
-export default Temp; 
+export default Recordings; 
  

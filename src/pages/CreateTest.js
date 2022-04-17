@@ -32,7 +32,7 @@ mutation($name: String!, $recordId: String!, $noOfUsers: Int!, $totalMints:Int!)
 }
 `;
 
-const Load=({state})=>
+const CreateTest=({state})=>
  {
   const{ id ,name} = useParams();
     console.log(id)
@@ -165,4 +165,4 @@ const Load=({state})=>
   );
 }
 
-export default Load;
+export default CreateTest;

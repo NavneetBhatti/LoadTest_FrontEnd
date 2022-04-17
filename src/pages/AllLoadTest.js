@@ -6,6 +6,8 @@ import { EditOutlined, DeleteOutlined,PlusOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import Search from "./Search";
 import { useQuery,gql } from "@apollo/client"
+import { useMutation } from "@apollo/react-hooks";
+
  
 export const GET_LoadTests =  gql`
 query{
@@ -28,32 +30,57 @@ query($id : String)
 }
 `
 
+export const delete_loadTest =  gql`
+query($id :String)
+{
+  deleteLoadTest(id: $id)
+}
+`
+
 
 
 
  
  
  
-function Home() {
-  const {error, data , loading} = useQuery(GET_LoadTests)
+function AllLoadTest() {
+  const {error, data , loading,refetch} = useQuery(GET_LoadTests)
   
   const [q, setQ] = useState("");
   const [state, setstate] = useState([]);
-  const [loading2, setloading] = useState(true);
+  //const [loading2, setloading] = useState(true);
   const [test, setTest] = useState([]);
+  const [deleteTest, setDeleteTest] = useState([]);
+
   const[loadTest, setLoadTest] = useState([]);
   const { loading3, data3 } = useQuery(Run_loadTest, {
     variables: { id: test},
   });
+  const { loading4, data4 } = useQuery(delete_loadTest, {
+    variables: { id: deleteTest},
+    // fetchPolicy:"cache-and-network",
+
+    // refetchQueries: [{ query: GET_LoadTests }],
+
+  });
 
  useEffect(() => {
    getData();
+  refetch();
  }, [loading, data]);
+
+// useEffect(() => {
+//   getData();
+//  refetch();
+// }, []);
+
+
  
  
  //fetch data
  const getData = async () => {
-   setloading(false);
+   console.log("---getdata---")
+   //setloading(true);
        setstate(
  
     data.allLoadTest.map(row => ({
@@ -67,6 +94,9 @@ function Home() {
    }))         
  );
  };
+
+
+
  
  
  
@@ -111,7 +141,7 @@ const columns = [
             
           />
           <DeleteOutlined
-            
+            onClick={() => deleteLoadTest(record)} 
             style={{ color: "red", marginLeft: 12 }}
           />
 
@@ -165,7 +195,7 @@ useEffect(() => {
 
 //run  load test
 const runLoadTest = async () => {
-  setloading(false);
+ // setloading(false);
       setLoadTest(
      data3.Run_loadTest.map(row => ({
 
@@ -181,9 +211,44 @@ const runLoadTest = async () => {
   // totalMints:  row.totalMints,
   // status:  row.status
    }))         
-);
+ );
 };
- 
+
+
+
+
+//delete  test
+const deleteLoadTest = (record) => {
+  console.log("---delete test **")
+  console.log(record.key);
+  //setDeleteTest(record.key);
+  // window.location.reload(false);
+  Modal.confirm({
+    title: "Are you sure, you want to delete this Recording?",
+    okText: "Yes",
+    okType: "danger",
+    onOk: () => {
+      setDeleteTest(record.key);
+     // window.location.reload(false);
+     refetch();
+
+    },
+  });
+};
+// const test2=() =>{
+//   console.log("--------test interval")
+//   // window.location.reload(false);
+
+// }
+
+
+// useEffect(() => {
+//   const comInterval = setInterval(getData, 7000); //This will refresh the data at regularIntervals of refreshTime
+//   return () => clearInterval(comInterval) //Clear interval on component unmount to avoid memory leak
+// },[])
+
+
+
  
  
  
@@ -207,7 +272,7 @@ return (
  );
 }
  
-export default Home; 
+export default AllLoadTest; 
  
  
 
