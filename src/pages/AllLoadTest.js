@@ -75,7 +75,7 @@ function AllLoadTest() {
 
   //fetch data
   const getData = async () => {
-    console.log("---getdata---");
+    console.log("---getdata--test-");
     //setloading(true);
     setstate(
       data.allLoadTest.map((row) => ({
