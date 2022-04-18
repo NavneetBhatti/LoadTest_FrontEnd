@@ -68,7 +68,7 @@ width:50%;
   border:1px solid yellow; */
 }
 .recordingHeading{
- margin-right: 10%;
+ margin-left: 25px;
  margin-top: 3%;
 }
 .formItems{
@@ -99,12 +99,11 @@ h1{
 }
 .formBtn{
   /* border:1px solid red; */
-  margin-top:20px;
- 
+  margin-top:30px;
 }
 
 .back{
-  margin-top:116%;
+  margin-top:138%;
   margin-right:2%;
   width:45%;
 }
@@ -126,4 +125,15 @@ h1{
 } */
 td { 
   padding: 20px;
+}
+.home{
+  border:1px solid red;
+  text-align: center;
+  margin-top:50px;
+
+}
+
+body{
+  background: #f8f9fa;
+
 }

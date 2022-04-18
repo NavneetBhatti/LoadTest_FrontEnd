@@ -2,7 +2,7 @@ import "antd/dist/antd.css";
 import "../App.css";
 import { Button, Table, Modal, Input, Row ,Col} from "antd";
 import { useState,useEffect } from "react";
-import { EditOutlined, DeleteOutlined ,PlusOutlined} from "@ant-design/icons";
+import {  DeleteOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import Search from "./Search";
 import { useQuery,gql } from "@apollo/client"
@@ -53,7 +53,6 @@ function Recordings() {
  
  const {error, data , loading} = useQuery(GET_Recording)
  
- const history = useHistory();
  const [q, setQ] = useState("");
  
  const [state, setstate] = useState([]);
@@ -132,7 +131,7 @@ const columns = [
 
           <Link to={`/load/${record.key}/${record.name}`}>
               <Button type="primary"   onClick={() => {onAddRecord(record); }} style={{marginLeft:"15px"}}>
-                Add Test
+                Create Load Test
               </Button>
           </Link>
 

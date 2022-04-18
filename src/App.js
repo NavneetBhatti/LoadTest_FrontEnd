@@ -4,12 +4,13 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import AllLoadTest from './pages/AllLoadTest';
 import CreateTest from './pages/CreateTest';
 import Navbar from "./Components/Navbar/Navbar";
 import Recordings from "./pages/Recordings";
+import Home from "./pages/Home";
+
 
 
 
@@ -20,8 +21,11 @@ const App = () => {
     <Router>
         <Navbar />
        <Switch>
-            <Route exact path="/" component={AllLoadTest} />
+            <Route exact path="/tests" component={AllLoadTest} />
+            <Route exact path="/home" component={Home} />
             <Route exact path="/load/:id/:name" component={CreateTest} />
+            {/* <Route exact path="/load" component={CreateTest} /> */}
+
             <Route exact path="/recording" component={Recordings} />
         </Switch>
     </Router>

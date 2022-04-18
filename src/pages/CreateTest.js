@@ -64,13 +64,14 @@ const CreateTest=({state})=>
     <div className="App">
 
         <Row className="recordingHeading">
-            <Col span={6} offset={5} className="Col1" ><h1><b>Add New Test</b></h1></Col>
-            <Col span={6} offset={5} className="Col4" ><h2 className="h4"><b>{name}</b></h2></Col>
+            <Col span={20} offset={1} className="Col1" ><h1><b>Create Load Test for {name}</b></h1></Col>
+            {/* <Col span={6} offset={5} className="Col4" ><h2 className="h4"><b>{name}</b></h2></Col> */}
 
         </Row>
 
         <Row className="row2">
-            <Col span={4} offset={5}  className="Col2"><h2><b>Test Settings</b></h2>
+            <Col span={4} offset={4}  className="Col2">
+              {/* <h2><b>Test Settings</b></h2> */}
             <Link to={'/recording'}>
                   <Button className="back" >Back</Button>
             </Link>
@@ -148,9 +149,9 @@ const CreateTest=({state})=>
 
 
          
-          <Form.Item wrapperCol={{ span: 3 }} className="formBtn">
+          <Form.Item wrapperCol={{ span: 4 }} className="formBtn">
             <Button block type="primary" htmlType="submit" className="formBtn2">
-              Add Test
+              Create Load Test 
             </Button>
 
           </Form.Item>

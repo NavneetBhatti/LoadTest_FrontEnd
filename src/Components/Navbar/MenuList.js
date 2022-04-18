@@ -1,11 +1,16 @@
 export const MenuList = [
     {
-      title: "Tests",
-      url: "/",
+      title: "Home",
+      url: "/home",
     },
+    
     {
       title: "Recordings",
       url: "/recording",
+    },
+    {
+      title: "Load Tests",
+      url: "/tests",
     },
   
   ];
