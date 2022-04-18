@@ -68,7 +68,7 @@ width:50%;
   border:1px solid yellow; */
 }
 .recordingHeading{
- margin-left: 25px;
+ margin-right: 10px;
  margin-top: 3%;
 }
 .formItems{
@@ -103,7 +103,7 @@ h1{
 }
 
 .back{
-  margin-top:138%;
+  margin-top:129%;
   margin-right:2%;
   width:45%;
 }
@@ -136,4 +136,8 @@ td {
 body{
   background: #f8f9fa;
 
+}
+.home2{
+  border:1px solid green;
+  padding:50px;
 }

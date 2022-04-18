@@ -35,7 +35,7 @@ function AllLoadTest() {
   const { error, data, loading, refetch } = useQuery(GET_LoadTests,{
       refetchQueries: [{ query: GET_LoadTests }],
 
-    pollInterval:70000,
+    //pollInterval:200,
     onCompleted: () => console.log('----called---'),
 
   });
@@ -67,11 +67,22 @@ function AllLoadTest() {
   //   getData();
   //   refetch();
   // }, [data,loading,data3,data4,test,deleteTest]);
+  
   useEffect(() => {
       refetch();
       getData();
       console.log("---useEffect running--")
-    }, [data,deleteTest,test]);
+  }, [data,deleteTest,test]);
+
+
+
+  // useEffect(() => {
+  //     const comInterval = setInterval(getData, 30000); //This will refresh the data at regularIntervals of refreshTime
+  //     refetch();
+  
+  //     return () => clearInterval(comInterval); //Clear interval on component unmount to avoid memory leak
+  
+  // }, [loading, data, data3, data4]);  
 
   //fetch data
   const getData = async () => {
@@ -92,14 +103,15 @@ function AllLoadTest() {
   const columns = [
     {
       key: "1",
-      title: "Load Test Name",
+      title: "Load Test ",
       dataIndex: "name",
+
     },
-    {
-      key: "2",
-      title: "Recording",
-      dataIndex: "recordId",
-    },
+    // {
+    //   key: "2",
+    //   title: "Recording",
+    //   dataIndex: "recordId",
+    // },
     {
       key: "3",
       title: "No. of Users",
@@ -177,15 +189,11 @@ function AllLoadTest() {
   };
   
 
-//   useEffect(() => {
-//     const comInterval = setInterval(getData, 30000); //This will refresh the data at regularIntervals of refreshTime
-//     return () => clearInterval(comInterval); //Clear interval on component unmount to avoid memory leak
-//   }, [loading, data]);
+  
 
   return (
     <div className="App">
-    <h1>  {deleteTest}</h1>
-    <h1>  {data4}</h1>
+  
 
       <Row className="recordingHeading">
         <Col span={9} className="col4">

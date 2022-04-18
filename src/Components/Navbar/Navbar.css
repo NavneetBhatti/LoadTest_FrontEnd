@@ -1,8 +1,8 @@
 nav {
-  background: rgba(0, 0, 0, 0.9);
-  /* background: WhiteSmoke; */
+  /* background: rgba(0, 0, 0, 0.9); */
+  background: lightskyblue	;
 
-  padding: 20px;
+  padding: 10px;
   display: flex;
   justify-content: start;
   /* justify-content: space-between; */
@@ -33,8 +33,9 @@ nav {
 .logo {
   font-weight: 600;
   font-size: 25px;
-  color: tomato;
+  /* color: tomato; */
   margin-left: 50px;
+  margin-bottom: 18px;
 }
 
 .logo font {
@@ -118,4 +119,7 @@ nav {
     right: -100%;
     transition: all 0.5s ease-in-out;
   }
+}
+button{
+  background-color: lightskyblue	;
 }
