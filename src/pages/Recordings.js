@@ -35,7 +35,7 @@ function Recordings() {
  const [data2, setdata] = useState([]);
  const [modaldata, setmodaldata] = useState([]);
  const showModal = (record) => {
-   console.log("-----record")
+   console.log("-----record..")
    console.log(record);
    setmodaldata(record);
    setIsModalVisible(true);
