@@ -19,6 +19,7 @@ export const GET_LoadTests = gql`
   }
 `;
 
+
 export const Run_loadTest = gql`
   query ($id: String) {
     runLoadTest(id: $id)
@@ -31,11 +32,23 @@ export const delete_loadTest = gql`
   }
 `;
 
+export const Edit_LoadTest = gql`
+mutation($id:String!,$name:String,$noOfUsers:Int,$totalMints:Int){
+  editLoadTest(input: {
+    id: $id
+    name:$name
+    noOfUsers:$noOfUsers
+    totalMints:$totalMints
+  }
+  )
+}
+`;
+
 function AllLoadTest() {
   const { error, data, loading, refetch } = useQuery(GET_LoadTests,{
       refetchQueries: [{ query: GET_LoadTests }],
 
-    pollInterval:70000,
+    pollInterval:100,
     onCompleted: () => console.log('----called---'),
 
   });
@@ -57,7 +70,7 @@ function AllLoadTest() {
     refetchQueries: [{ query: GET_LoadTests }],
   });
 
-
+console.log("---test--")
   useEffect(() => {
     getData();
     refetch();
@@ -67,15 +80,26 @@ function AllLoadTest() {
   //   getData();
   //   refetch();
   // }, [data,loading,data3,data4,test,deleteTest]);
+
   useEffect(() => {
       refetch();
       getData();
       console.log("---useEffect running--")
-    }, [data,deleteTest,test]);
+  }, [data,deleteTest,test]);
+
+
+
+  useEffect(() => {
+      const comInterval = setInterval(getData, 30000); //This will refresh the data at regularIntervals of refreshTime.
+      refetch();
+  
+      return () => clearInterval(comInterval); //Clear interval on component unmount to avoid memory leak
+  
+  }, []);  
 
   //fetch data
   const getData = async () => {
-    console.log("---getdata--test-");
+    console.log("---getdata---");
     //setloading(true);
     setstate(
       data.allLoadTest.map((row) => ({
@@ -92,14 +116,15 @@ function AllLoadTest() {
   const columns = [
     {
       key: "1",
-      title: "Load Test Name",
+      title: "Load Test ",
       dataIndex: "name",
+
     },
-    {
-      key: "2",
-      title: "Recording",
-      dataIndex: "recordId",
-    },
+    // {
+    //   key: "2",
+    //   title: "Recording",
+    //   dataIndex: "recordId",
+    // },
     {
       key: "3",
       title: "No. of Users",
@@ -124,8 +149,11 @@ function AllLoadTest() {
       render: (index, record) => {
         return (
           <>
-            {/* <EditOutlined /> */}
-            <DeleteOutlined
+            <EditOutlined
+              onClick={() => {
+                editTest(record);
+              }}
+            />            <DeleteOutlined
               onClick={() => deleteLoadTest(record)}
               style={{ color: "red", marginLeft: 12 }}
             />
@@ -134,7 +162,7 @@ function AllLoadTest() {
             <Button
               type="primary"
               id={record.key}
-              disabled={record.status == "PROCESSING"}
+              disabled={record.status == "RUNNING"}
               onClick={() => runTest(record)}
               style={{ marginLeft: "50px" }}
             >
@@ -165,7 +193,7 @@ function AllLoadTest() {
     //setDeleteTest(record.key);
     // window.location.reload(false);
     Modal.confirm({
-      title: "Are you sure, you want to delete this Recording?",
+      title: "Are you sure, you want to delete this LoadTest?",
       okText: "Yes",
       okType: "danger",
       onOk: () => {
@@ -175,17 +203,19 @@ function AllLoadTest() {
       },
     });
   };
+
+  //edit test
+  const editTest = (record) => {
+    // setIsEditing(true);
+    // setEditing({ ...record });
+  };
   
 
-//   useEffect(() => {
-//     const comInterval = setInterval(getData, 30000); //This will refresh the data at regularIntervals of refreshTime
-//     return () => clearInterval(comInterval); //Clear interval on component unmount to avoid memory leak
-//   }, [loading, data]);
+  
 
   return (
     <div className="App">
-    <h1>  {deleteTest}</h1>
-    <h1>  {data4}</h1>
+  
 
       <Row className="recordingHeading">
         <Col span={9} className="col4">

@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import Search from "./Search";
 import { useQuery,gql } from "@apollo/client"
 import {Link } from "react-router-dom";
+import { useMutation } from "@apollo/react-hooks";
 
 
 
@@ -28,6 +29,23 @@ query{
 }
 `
 
+export const delete_recording = gql`
+mutation($id:String){
+  deleteRecording(id:$id){
+    id
+    name
+    startTime
+    endTime
+    urlInfoList{
+      id
+      url
+      start
+      end
+    }
+  }
+}
+`;
+
 
 
 function Recordings() {
@@ -40,6 +58,14 @@ function Recordings() {
    setmodaldata(record);
    setIsModalVisible(true);
  };
+ const[deleteRec, { data3 }] = useMutation(delete_recording,{
+   refetchQueries :[
+     {
+       query: GET_Recording
+     }
+   ]
+ });
+
  
  const handleOk = () => {
    setIsModalVisible(false);
@@ -61,6 +87,9 @@ function Recordings() {
  useEffect(() => {
    getData();
  }, [loading, data]);
+ useEffect(() => {
+  getData();
+}, [data3]);
  
  
  //fetch data
@@ -136,12 +165,11 @@ const columns = [
           </Link>
 
 
+          
           <DeleteOutlined
-            onClick={() => {
-              onDeleteRecord(record);
-            }}
-            style={{ color: "red" ,paddingLeft: "90px"}}
-          />
+              onClick={() => deleteRecording(record)}
+              style={{ color: "red", paddingLeft: "90px" }}
+            />
         </>
       );
     },
@@ -161,19 +189,27 @@ const onAddRecord = (record) => {
  
  
  
- //delete recording
- const onDeleteRecord = (record) => {
-   Modal.confirm({
-     title: "Are you sure, you want to delete this Recording?",
-     okText: "Yes",
-     okType: "danger",
-     onOk: () => {
-       setstate((pre) => {
-         return pre.filter((recording) => recording.id !== record.id);
-       });
-     },
-   });
- };
+ //delete  test
+ const deleteRecording = (record) => {
+  console.log("---delete rec **");
+  console.log(record.key);
+  //setDeleteTest(record.key);
+  // window.location.reload(false);
+  Modal.confirm({
+    title: "Are you sure, you want to delete this LoadTest?",
+    okText: "Yes",
+    okType: "danger",
+    onOk: () => {
+      deleteRec({
+        variables : {id: record.key}
+      })
+      // setDeleteTest(record.key);
+      // // window.location.reload(false);
+      // refetch();
+    },
+  });
+  
+};
  
  
 //search recording
@@ -186,7 +222,7 @@ return (
  
      <div className="App">
       <Row className="recordingHeading">
-          <Col span={8}><h1><b>Recordings</b></h1></Col>
+          <Col span={4} offset={2} style={{paddingRight: "30px"}}><h1><b>Recordings</b></h1></Col>
       </Row>
      
 

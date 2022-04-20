@@ -6,9 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import {ApolloClient,ApolloProvider, InMemoryCache} from "@apollo/client";
 
 const client = new ApolloClient({
-  // uri: "http://localhost:8080/graphql",
+   uri: "http://localhost:8080/graphql",
   // uri: "https://rickandmortyapi.com/graphql",
-  uri: "https://admin-testing-tool.herokuapp.com/graphql",
+// uri: "https://admin-testing-tool.herokuapp.com/graphql",
 
 
   cache: new InMemoryCache(),

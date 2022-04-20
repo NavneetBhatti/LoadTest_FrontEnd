@@ -4,14 +4,15 @@
   text-align: center;
 }
 .App-header {
-  /* background-color: #282c34; */
-  min-height: 100vh;
+  /* background-color: #282c34;  */
+  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: red
+  margin-top:38px;
+  /* color: red */
   ;
 }
 .tableR{
@@ -30,7 +31,6 @@
 
 /* .one {
   display: inline-block;
-
   border:1px solid red;
   width:50%;
 }
@@ -39,7 +39,6 @@
 }
 .container{
   border:1px solid blue;
-
 } */
 .btn{
   position: absolute;
@@ -68,7 +67,7 @@ width:50%;
   border:1px solid yellow; */
 }
 .recordingHeading{
- margin-left: 25px;
+ margin-right: 10px;
  margin-top: 3%;
 }
 .formItems{
@@ -88,7 +87,6 @@ width:50%;
 }
 h1{
   border:1px solid blue;
-
 } */
 /* .Col4{
   border:1px solid blue;
@@ -103,13 +101,13 @@ h1{
 }
 
 .back{
-  margin-top:138%;
+  margin-top:332px;
   margin-right:2%;
   width:45%;
 }
 .col4{
   /* border:1px solid red; */
-  padding-left:6px; 
+  padding-left:15px; 
    padding-right:80px;
 }
 .rec{
@@ -127,7 +125,7 @@ td {
   padding: 20px;
 }
 .home{
-  border:1px solid red;
+  /* border:1px solid red; */
   text-align: center;
   margin-top:50px;
 
@@ -136,4 +134,37 @@ td {
 body{
   background: #f8f9fa;
 
+}
+.home2{
+  /* border:1px solid green; */
+  padding:50px;
+}
+.c1{
+/* border:3px solid pink; */
+padding-left:50px;
+padding-right:50px;
+padding-bottom:50px;
+
+}
+.c2{
+  /* border:1px solid red; */
+  padding-left:120px;
+  /* padding-right:50px; */
+  padding-bottom:50px;
+
+}
+img{
+  border:2px solid red;
+}
+.downloadBtn{
+  width:60%;
+  height:80%;
+  margin-left: 60px;
+  margin-top: 30px;
+  padding:5px;
+  border-radius: 6px;
+}
+
+Button{
+  border-radius: 6px !important;
 }

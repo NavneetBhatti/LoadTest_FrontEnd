@@ -37,7 +37,8 @@ const CreateTest=({state})=>
   const{ id ,name} = useParams();
     console.log(id)
   const[addComment, { data }] = useMutation(ADD_COMMENT);
-  
+  const current =     new Date().toLocaleString();
+
 
   const[test, setTest] =useState({})
   
@@ -49,7 +50,7 @@ const CreateTest=({state})=>
         console.log(values)
         // e.preventDefault();
         addComment({
-          variables : {name: values.name, recordId:id, noOfUsers:values.noOfUsers, totalMints:values.totalMints }
+          variables : {name: current, recordId:id, noOfUsers:values.noOfUsers, totalMints:values.totalMints }
 
         })
                 console.log("test3-----");
@@ -81,7 +82,6 @@ const CreateTest=({state})=>
       
 <Col span={15} className="Col3">
       <header >
-        {/* <h2>{ name }</h2> */}
       
         <Form
           autoComplete="off"
@@ -95,8 +95,9 @@ const CreateTest=({state})=>
           
             {/* <h2 className="rec">{name}</h2> */}
            
+            {/* <h2  style={{ marginRight: "152px" }}>{ current }  Load Test</h2><br/> */}
 
-            <Form.Item
+          <Form.Item
             name="name"
             label="Laod Test Name"
             rules={[
@@ -110,9 +111,8 @@ const CreateTest=({state})=>
             hasFeedback
           >
             {/* <Input placeholder="Type test name"  defaultValue={id}/> */}
-            <Input placeholder="e.g. LoadTest 1" />
-
-          </Form.Item>
+            <Input  defaultValue={ current }   />
+          </Form.Item>  
 
           <Form.Item
             name="noOfUsers"
@@ -125,7 +125,7 @@ const CreateTest=({state})=>
             ]}
             hasFeedback
           >
-              <Input placeholder="e.g. 20" />
+              <Input  defaultValue="10"  />
 
           </Form.Item>
           
@@ -141,7 +141,7 @@ const CreateTest=({state})=>
             ]}
             hasFeedback
           >
-             <Input placeholder="e.g. 5" />
+             <Input defaultValue="5" />
 
           </Form.Item>
 
