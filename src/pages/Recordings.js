@@ -127,21 +127,21 @@ function Recordings() {
 const columns = [
    {
      key: "1",
-     title: "Recording Name",
+     title: <b>Recording Name</b>,
      dataIndex: "name",
      align: 'center'
 
    },
    {
      key: "2",
-     title: "Start Time",
+     title: <b>Start Time</b>,
      dataIndex: "StartTime",
      align: 'center'
  
    },
    {
      key: "3",
-     title: "End Time",
+     title: <b>End Time</b>,
      dataIndex: "EndTime",
      align: 'center'
 
@@ -149,7 +149,7 @@ const columns = [
    {
  
      key: 'key',
-     title: "Actions",
+     title: <b>Actions</b>,
      align: 'center',
 
      dataIndex: 'key',

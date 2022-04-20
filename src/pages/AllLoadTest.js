@@ -148,7 +148,7 @@ console.log("---test--")
   const columns = [
     {
       key: "1",
-      title: "Load Test Name",
+      title: <b>Load Test Name</b>,
       dataIndex: "name",
 
     },
@@ -159,23 +159,23 @@ console.log("---test--")
     // },
     {
       key: "3",
-      title: "Concurrennt Users",
+      title: <b>Concurrennt Users</b>,
       dataIndex: "noOfUsers",
     },
     {
       key: "4",
-      title: "Duration",
+      title: <b>Duration</b>,
       dataIndex: "totalMints",
     },
     {
       key: "5",
-      title: "Status",
+      title: <b>Status</b>,
       dataIndex: "status",
     },
 
     {
       key: "key",
-      title: "Actions",
+      title: <b>Actions</b>,
       dataIndex: "key",
 
       render: (index, record) => {
