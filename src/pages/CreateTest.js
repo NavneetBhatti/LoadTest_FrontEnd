@@ -50,7 +50,7 @@ const CreateTest=({state})=>
         console.log(values)
         // e.preventDefault();
         addComment({
-          variables : {name: current, recordId:id, noOfUsers:values.noOfUsers, totalMints:values.totalMints }
+          variables : {name: values.name, recordId:id, noOfUsers:values.noOfUsers, totalMints:values.totalMints }
 
         })
                 console.log("test3-----");
@@ -111,7 +111,7 @@ const CreateTest=({state})=>
             hasFeedback
           >
             {/* <Input placeholder="Type test name"  defaultValue={id}/> */}
-            <Input  defaultValue={ current }   />
+            <Input    />
           </Form.Item>  
 
           <Form.Item
@@ -125,7 +125,7 @@ const CreateTest=({state})=>
             ]}
             hasFeedback
           >
-              <Input  defaultValue="10"  />
+              <Input  />
 
           </Form.Item>
           
@@ -141,7 +141,7 @@ const CreateTest=({state})=>
             ]}
             hasFeedback
           >
-             <Input defaultValue="5" />
+             <Input />
 
           </Form.Item>
 

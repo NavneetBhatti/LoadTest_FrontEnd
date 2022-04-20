@@ -1,10 +1,12 @@
 import "antd/dist/antd.css";
 import "../App.css";
-import { Button, Table, Modal, Row, Col } from "antd";
+import { Button, Table, Modal, Row, Col ,Input} from "antd";
 import { useState, useEffect } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import Search from "./Search";
 import { useQuery, gql } from "@apollo/client";
+import { useMutation } from "@apollo/react-hooks";
+
 
 export const GET_LoadTests = gql`
   query {
@@ -48,10 +50,36 @@ function AllLoadTest() {
   const { error, data, loading, refetch } = useQuery(GET_LoadTests,{
       refetchQueries: [{ query: GET_LoadTests }],
 
-    pollInterval:100,
+    // pollInterval:100,
     onCompleted: () => console.log('----called---'),
 
   });
+
+ //edit ------------------------------------------
+ const [isEditing, setIsEditing] = useState(false);
+ const [editingTest, setEditingTest] = useState(null);
+ const[editLoadTest, { data5 }] = useMutation(Edit_LoadTest,{
+  refetchQueries :[
+    {
+      query: GET_LoadTests
+    }
+  ]
+ });
+ const onSubmit =(values) => {
+  console.log("----------hello ----------")
+  console.log(values)
+  // e.preventDefault();
+  editLoadTest({
+    variables : {id:editingTest.key, name: editingTest.name, noOfUsers:editingTest.noOfUsers, totalMints:editingTest.totalMints }
+
+  })
+  setIsEditing(false);
+
+}
+
+// edit end----------------------------------------------
+
+
 
   const [q, setQ] = useState("");
   const [state, setstate] = useState([]);
@@ -60,6 +88,7 @@ function AllLoadTest() {
   const [deleteTest, setDeleteTest] = useState([]);
 
   const [loadTest, setLoadTest] = useState([]);
+ 
   const { loading3, data3 } = useQuery(Run_loadTest, {
     variables: { id: test },
   });
@@ -101,8 +130,11 @@ console.log("---test--")
   const getData = async () => {
     console.log("---getdata---");
     //setloading(true);
+    let copydata= [...data.allLoadTest];
+    console.log("------array2 ----")
+    console.log(copydata.reverse())
     setstate(
-      data.allLoadTest.map((row) => ({
+      copydata.map((row) => ({
         key: row.id.toString(),
         name: row.name,
         recordId: row.recordId,
@@ -116,7 +148,7 @@ console.log("---test--")
   const columns = [
     {
       key: "1",
-      title: "Load Test ",
+      title: "Load Test Name",
       dataIndex: "name",
 
     },
@@ -127,12 +159,12 @@ console.log("---test--")
     // },
     {
       key: "3",
-      title: "No. of Users",
+      title: "Concurrennt Users",
       dataIndex: "noOfUsers",
     },
     {
       key: "4",
-      title: "Total Minutes",
+      title: "Duration",
       dataIndex: "totalMints",
     },
     {
@@ -206,8 +238,12 @@ console.log("---test--")
 
   //edit test
   const editTest = (record) => {
-    // setIsEditing(true);
-    // setEditing({ ...record });
+    setIsEditing(true);
+    setEditingTest({ ...record });
+  };
+  const resetEditing = () => {
+    setIsEditing(false);
+    setEditingTest(null);
   };
   
 
@@ -231,6 +267,55 @@ console.log("---test--")
         <Table columns={columns} dataSource={state} className="tableR">
           {" "}
         </Table>
+
+        <Modal
+          title="Edit Load Test "
+          visible={isEditing}
+          okText="Save"
+          onCancel={() => {
+            resetEditing();
+          }}
+        onOk ={onSubmit}
+        >
+          <Input
+            value={editingTest?.key}
+            onChange={(e) => {
+              setEditingTest((pre) => {
+                return { ...pre, key: e.target.value };
+              });
+            }}
+            type="hidden"
+          />
+          <h4>Load Test Name</h4>
+          <Input
+            value={editingTest?.name}
+            onChange={(e) => {
+              setEditingTest((pre) => {
+                return { ...pre, name: e.target.value };
+              });
+            }}
+          /><br/><br/>
+
+          <h4>Concurrent Users</h4>
+          <Input
+            value={editingTest?.noOfUsers}
+            onChange={(e) => {
+              setEditingTest((pre) => {
+                return { ...pre, noOfUsers: e.target.value };
+              });
+            }}
+          /><br/><br/>
+
+          <h4>Duration</h4>
+          <Input
+            value={editingTest?.totalMints}
+            onChange={(e) => {
+              setEditingTest((pre) => {
+                return { ...pre, totalMints: e.target.value };
+              });
+            }}
+          />
+        </Modal>
       </header>
     </div>
   );

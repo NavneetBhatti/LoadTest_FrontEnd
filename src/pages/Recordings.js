@@ -95,9 +95,12 @@ function Recordings() {
  //fetch data
  const getData = async () => {
    setloading(false);
-       setstate(
- 
-           data.allRecordings.map(row => ({
+   let copydata= [...data.allRecordings];
+   console.log("------array2 ----")
+   console.log(copydata.reverse())
+    
+   setstate(
+   copydata.map(row => ({
  
    key: row.id.toString(),
    name: row.name,
