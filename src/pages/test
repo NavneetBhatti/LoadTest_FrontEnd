@@ -1,349 +1,72 @@
-import "antd/dist/antd.css";
-import "../App.css";
-import { Button, Table, Modal, Input, Row, Col } from "antd";
-import { useState, useEffect } from "react";
-import { DeleteOutlined } from "@ant-design/icons";
-import { useHistory } from "react-router-dom";
-import Search from "./Search";
-import { useQuery, gql } from "@apollo/client";
-import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/react-hooks";
-import { Form } from "antd";
+import React from 'react'
+import{ Row ,Col} from "antd";
+import {  Button} from "antd";
+import { Card } from 'antd';
 
 
 
-export const GET_Recording = gql`
-  query {
-    allRecordings {
-      id
-      name
-      startTime
-      endTime
-      urlInfoList {
-        start
-        end
-        url
-      }
-    }
-  }
-`;
+const Home = () => {
+  return (
+      <>    
+      <div class="home">
+        <h1 style={{fontSize:"45px"}}>Is your website capable of handling the traffic?</h1>
+        <h2 style={{fontSize:"30px"}}>Test your website performance now</h2>
+        </div>
+        <div class="home2">
+            <h2>Test Creation | Create scripts with LoadTest extension and Run your scripts to test Load .</h2>
+        </div>
+        <div>
+          <Row  className='row1'>
 
-export const delete_loadTest = gql`
-mutation($id:String){
-  deleteRecording(id:$id){
-    id
-    name
-    startTime
-    endTime
-    urlInfoList{
-      id
-      url
-      start
-      end
-    }
-  }
-}
-`;
+            <Col className='c1'span={9} offset={2}>
+            {/* <h2 className="h2">LoadTest Recording Chrome Extension</h2> */}
+            <div className="site-card-border-less-wrapper">
+            <Card style={{ width: "140%" ,height:"130%" }}>
+              <h1>LoadTest  Chrome Extension</h1>
+              <h3>Create Test Scripts in Minutes</h3>
+              <h3>With the LoadTest Recorder, you can quickly create test scripts in minutes. 
+              If you know how to use your web app, you can load test using this website regardless of your skill level or expertise.
+              </h3>
+            </Card>
+            </div>
+            </Col>
 
-function Recordings() {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [deleteTest, setDeleteTest] = useState([]);
-
-  const [data2, setdata] = useState([]);
-  const [modaldata, setmodaldata] = useState([]);
-  const showModal = (record) => {
-    console.log("-----record");
-    console.log(record);
-    setmodaldata(record);
-    setIsModalVisible(true);
-  };
-
-  //delete
-  // const { loading4, data4 } = useQuery(delete_loadTest, {
-  //   variables: { id: deleteTest },
-  //   fetchPolicy:"cache-and-network",
-  //   refetchQueries: [{ query: GET_LoadTests }],
-  // });
-  const[addComment, { data3 }] = useMutation(delete_loadTest);
-
-  const { loading4, data4 } = useMutation(delete_loadTest, {
-    variables: { id: deleteTest },
-    // fetchPolicy:"cache-and-network",
-    // refetchQueries: [{ query: GET_LoadTests }],
-  });
-
-
-//   const onSubmit =(values) => {
-//     console.log("----------hello ----------")
-//     console.log(values)
-//     // e.preventDefault();
-//     addComment({
-//       variables : { id:values.id }
-
-//     })
-//             console.log("test3-----");
-//             alert("Test added successfully")
-
-// }
-
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
-  const { error, data, loading } = useQuery(GET_Recording);
-
-  const [q, setQ] = useState("");
-
-  const [state, setstate] = useState([]);
-
-  const [loading2, setloading] = useState(true);
-  useEffect(() => {
-    getData();
-  }, [loading, data,data4]);
-
-  //fetch data
-  const getData = async () => {
-    setloading(false);
-    console.log("----array---");
-    console.log(data);
-
-    let copydata= [...data.allRecordings];
-    console.log("------array2 ----")
-    console.log(copydata.reverse())
-    setstate(
-      copydata.map((row) => ({
-        key: row.id.toString(),
-        name: row.name,
-        StartTime: new Date(row.startTime).toLocaleTimeString("en-US"),
-        EndTime: new Date(row.endTime).toLocaleTimeString("en-US"),
-        urlID: row.urlInfoList.map((t) => <li>{t.url}</li>),
-        URL: row.urlInfoList.map((t) => <li>{t.url}</li>),
-        UrlStartTime: row.urlInfoList.map((t) => (
-          <li>{new Date(t.start).toLocaleTimeString("en-US")}</li>
-        )),
-        UrlEndTime: row.urlInfoList.map((t) => (
-          <li>{new Date(t.end).toLocaleTimeString("en-US")}</li>
-        )),
-      }))
-    );
-  };
-
-  const columns = [
-    {
-      key: "1",
-      title: "Recording Name",
-      dataIndex: "name",
-      align: "center",
-    },
-    {
-      key: "2",
-      title: "Start Time",
-      dataIndex: "StartTime",
-      align: "center",
-    },
-    {
-      key: "3",
-      title: "End Time",
-      dataIndex: "EndTime",
-      align: "center",
-    },
-    {
-      key: "key",
-      title: "Actions",
-      align: "center",
-
-      dataIndex: "key",
-
-      render: (index, record) => {
-        return (
-          <>
-            <Button
-              type="primary"
-              onClick={() => showModal(record)}
-              style={{ marginRight: "0px" }}
-            >
-              Details
+            <Col className='c2' span={10} offset={1}>
+            <img src= {require('../Components/images/recording.gif')}   className='recordingGif'/>
+            </Col>
+          </Row>
+          <Row>
+          <Button block type="primary" className="downloadBtn" >
+              Download  LoadTest  Chrome Extension
             </Button>
 
-            <Link to={`/load/${record.key}/${record.name}`}>
-              <Button
-                type="primary"
-                onClick={() => {
-                  onAddRecord(record);
-                }}
-                style={{ marginLeft: "15px" }}
-              >
-                Create Load Test
-              </Button>
-            </Link>
-
-            {/* <DeleteOutlined
-              onClick={() => {
-                onDeleteRecord(record);
-              }}
-              style={{ color: "red", paddingLeft: "90px" }}
-            /> */}
-             <DeleteOutlined
-              onClick={() => deleteLoadTest(record)}
-              style={{ color: "red", marginLeft: 12 }}
-            />
-          </>
-        );
-      },
-    },
-  ];
-
-  //add recording
-  const onAddRecord = (record) => {
-    setstate((pre) => {
-      return pre.filter((recording) => recording.id !== record.id);
-    });
-  };
-
-  //delete recording
-  // const onDeleteRecord = (record) => {
-  //   Modal.confirm({
-  //     title: "Are you sure, you want to delete this Recording?",
-  //     okText: "Yes",
-  //     okType: "danger",
-  //     onOk: () => {
-  //       setstate((pre) => {
-  //         return pre.filter((recording) => recording.id !== record.id);
-  //       });
-  //     },
-  //   });
-  // };
-
-  //search recording
-  function search(rows) {
-    return rows.filter((row) => row.name.toLowerCase().indexOf(q) > -1);
-  }
-
-
-  //delete  recording
-  const deleteLoadTest = (record) => {
-    console.log("---delete rect--- **");
-    console.log(record.key);
-    //setDeleteTest(record.key);
-    // window.location.reload(false);
-    addComment({
-      variables : {id: record.key}
-    })
-    Modal.confirm({
-      title: "Are you sure, you want to delete this Recording?",
-      okText: "Yes",
-      okType: "danger",
-      onOk: () => {
-        setDeleteTest(record.key);
-        // window.location.reload(false);
-       // refetch();
-      },
-      
-
-
-
-    });
-  };
-
-  return (
-    <div className="App">
-      <h1>{deleteTest}</h1>
-      <Row className="recordingHeading">
-        <Col span={8}>
-          <h1>
-            <b>Recordings</b>
-          </h1>
-        </Col>
-      </Row>
-
-      <Search search={search} />
-      <header className="App-header">
-        <Table
-          columns={columns}
-          dataSource={state}
-          className="tableR"
-          align="center"
-        ></Table>
-      </header>
-
-      <Modal
-        title={modaldata.name}
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        width={1000}
-      >
-        <table border="0">
-          <tr>
-            <th>URL</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-          </tr>
-          <tr>
-            <td>{modaldata.URL}</td>
-            <td>{modaldata.UrlStartTime}</td>
-            <td>{modaldata.UrlEndTime}</td>
-          </tr>
-        </table>
-      </Modal>
-
-
-      {/* <header >
-      
-      <Form
-        autoComplete="off"
-        layout="vertical"
-        // labelCol={{ span: 5}}
-        // wrapperCol={{ span: 5 }}
-        onFinish={onSubmit}
-       >
-
-         <div className="formItems">
-        
-
-
-         
-
-       
-        
-
-        <Form.Item
-          name="id"
-          label="Duration(min)"
-          rules={[
-            {
-              required: true,
-              message: "Please enter Duration",
-            },
-          ]}
-          hasFeedback
-        >
-           <Input placeholder="e.g. 5" />
-
-        </Form.Item>
-
+          </Row>
         </div>
 
+        <div>
+          <Row  className='row1'>
 
-       
-        <Form.Item wrapperCol={{ span: 4 }} className="formBtn">
-          <Button block type="primary" htmlType="submit" className="formBtn2">
-            Create Load Test 
-          </Button>
+            <Col className='c1'span={9} offset={2}>
+            {/* <h2 className="h2">LoadTest Recording Chrome Extension</h2> */}
+            <div className="site-card-border-less-wrapper">
+            <Card style={{ width: "140%" ,height:"130%" }}>
+              <h1>Create and Run Load Tests</h1>
+              <h3>Create Test Scripts in Minutes</h3>
+              <h3>With the LoadTest Recorder, you can quickly create test scripts in minutes. 
+              If you know how to use your web app, you can load test using this website regardless of your skill level or expertise.
+              </h3>
+            </Card>
+            </div>
+            </Col>
 
-        </Form.Item>
-        
-      </Form>
-    </header> */}
-
-    </div>
-    
-  );
+            <Col className='c2' span={10} offset={1}>
+            <img src= {require('../Components/images/recording.gif')}   className='recordingGif'/>
+            </Col>
+          </Row>
+          
+        </div>
+       </> 
+  )
 }
 
-export default Recordings;
+export default Home;

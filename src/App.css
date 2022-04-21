@@ -138,6 +138,7 @@ body{
 .home2{
   /* border:1px solid green; */
   padding:50px;
+  text-align: center;
 }
 .c1{
 /* border:3px solid pink; */
@@ -148,23 +149,46 @@ padding-bottom:50px;
 }
 .c2{
   /* border:1px solid red; */
-  padding-left:120px;
-  /* padding-right:50px; */
+  padding-left:80px;
+  padding-right:50px;
   padding-bottom:50px;
 
 }
-img{
+/* img{
   border:2px solid red;
-}
+} */
 .downloadBtn{
-  width:60%;
-  height:80%;
-  margin-left: 60px;
+  width:30%;
+  height:70px;
+  margin-left: 35%;
   margin-top: 30px;
-  padding:5px;
-  border-radius: 6px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  /* padding:5px; */
+  /* border-radius: 6px; */
+  
 }
 
 Button{
   border-radius: 6px !important;
 }
+/* .h1{
+  border:1px solid red;
+} */
+.h2{
+  /* margin-left:90px; */
+}
+.recordingGif{
+  width:130% ;
+  height:130% ;
+  /* margin-top:50px; */
+  
+  }
+  .row1{
+    border: 1px solid #C0C0C0		;
+    padding:50px;
+    margin-left: 120px; 
+    margin-right:120px; 
+}
+  
+

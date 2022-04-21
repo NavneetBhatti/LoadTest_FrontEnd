@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <nav>
       <div className="logo">
-        LOAD<font>Testing</font>
+        Load<font>Test</font>
       </div>
       <div className="menu-icon" onClick={handleClick}>
         <i className={clicked ? "fas fa-times" : "fas fa-bars"}></i>
