@@ -150,11 +150,11 @@ const CreateTest=({state})=>
 
          
           <Form.Item wrapperCol={{ span: 4 }} className="formBtn">
-          <Link to={'/tests'}>
+          {/* <Link to={'/tests'}> */}
             <Button block type="primary" htmlType="submit" className="formBtn2">
               Create Load Test 
             </Button>
-            </Link>
+            {/* </Link> */}
 
 
           </Form.Item>
