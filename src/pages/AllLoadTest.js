@@ -50,7 +50,7 @@ function AllLoadTest() {
   const { error, data, loading, refetch } = useQuery(GET_LoadTests,{
       refetchQueries: [{ query: GET_LoadTests }],
 
-    // pollInterval:100,
+    pollInterval:100,
     onCompleted: () => console.log('----called---'),
 
   });
