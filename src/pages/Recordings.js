@@ -230,7 +230,7 @@ return (
      
 
 
-       <Search search={search}/>
+       {/* <Search search={search}/> */}
        <header className="App-header">
       
        <Table columns={columns} dataSource={state} className="tableR"  align='center' >

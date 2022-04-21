@@ -261,7 +261,7 @@ console.log("---test--")
         </Col>
       </Row>
 
-      <Search search={search} />
+      {/* <Search search={search} /> */}
 
       <header className="App-header">
         <Table columns={columns} dataSource={state} className="tableR">
