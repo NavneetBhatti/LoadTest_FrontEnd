@@ -53,8 +53,8 @@ const CreateTest=({state})=>
           variables : {name: values.name, recordId:id, noOfUsers:values.noOfUsers, totalMints:values.totalMints }
 
         })
-                console.log("test3-----");
-                alert("Test added successfully")
+                // console.log("test3-----");
+                // alert("Test added successfully")
 
     }
 
@@ -111,7 +111,7 @@ const CreateTest=({state})=>
             hasFeedback
           >
             {/* <Input placeholder="Type test name"  defaultValue={id}/> */}
-            <Input    />
+            <Input  defaultValue={current}  />
           </Form.Item>  
 
           <Form.Item
@@ -150,9 +150,12 @@ const CreateTest=({state})=>
 
          
           <Form.Item wrapperCol={{ span: 4 }} className="formBtn">
+          <Link to={'/tests'}>
             <Button block type="primary" htmlType="submit" className="formBtn2">
               Create Load Test 
             </Button>
+            </Link>
+
 
           </Form.Item>
           
