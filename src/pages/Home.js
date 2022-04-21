@@ -2,6 +2,7 @@ import React from 'react'
 import{ Row ,Col} from "antd";
 import {  Button} from "antd";
 import { Card } from 'antd';
+import Footer from "../Components/Footer";
 
 
 
@@ -16,25 +17,24 @@ const Home = () => {
             <h2>Test Creation | Create scripts with LoadTest extension and Run your scripts to test Load .</h2>
         </div>
         <div>
-          <Row  className='row1'>
-
-            <Col className='c1'span={9} offset={2}>
-            {/* <h2 className="h2">LoadTest Recording Chrome Extension</h2> */}
-            <div className="site-card-border-less-wrapper">
-            <Card style={{ width: "140%" ,height:"130%" }}>
-              <h1>LoadTest  Chrome Extension</h1>
+        <Row  >
+           <Col  span={12}>
+             <div style={{ paddingLeft:"35%",paddingRight:"10%",paddingTop:"10%"}}>
+             <h1>LoadTest  Chrome Extension</h1>
               <h3>Create Test Scripts in Minutes</h3>
               <h3>With the LoadTest Recorder, you can quickly create test scripts in minutes. 
               If you know how to use your web app, you can load test using this website regardless of your skill level or expertise.
               </h3>
-            </Card>
-            </div>
-            </Col>
+             </div>
+           </Col>
+           <Col span={11} >
+           <div>
+           <img src= {require('../Components/images/recording.gif')}   className='recordingGif2'/>
 
-            <Col className='c2' span={10} offset={1}>
-            <img src= {require('../Components/images/recording.gif')}   className='recordingGif'/>
-            </Col>
-          </Row>
+           </div>
+
+           </Col>
+         </Row>
           <Row>
           <Button block type="primary" className="downloadBtn" >
               Download  LoadTest  Chrome Extension
@@ -43,28 +43,29 @@ const Home = () => {
           </Row>
         </div>
 
-        <div>
-          <Row  className='row1'>
-
-            <Col className='c1'span={9} offset={2}>
-            {/* <h2 className="h2">LoadTest Recording Chrome Extension</h2> */}
-            <div className="site-card-border-less-wrapper">
-            <Card style={{ width: "140%" ,height:"130%" }}>
-              <h1>Create and Run Load Tests</h1>
-              <h3>Create Test Scripts in Minutes</h3>
-              <h3>With the LoadTest Recorder, you can quickly create test scripts in minutes. 
-              If you know how to use your web app, you can load test using this website regardless of your skill level or expertise.
+        <div className='div2'>
+         <Row  >
+           <Col  span={12}>
+             <div style={{ paddingLeft:"35%",paddingRight:"10%",paddingTop:"10%"}}>
+             <h1>Test Creation</h1>
+              <h3>Create Test in Minutes</h3>
+              <h3>Creating Load Test in Loadtest is simple and easy to use. To create Load test,create Load test button in Recording page and select the concurrent users and duration of test.It will create the test nad run it from Load test page. 
+             
               </h3>
-            </Card>
-            </div>
-            </Col>
+             </div>
+           </Col>
+           <Col span={11} >
+           <div>
+           <img src= {require('../Components/images/frontend.gif')}   className='recordingGif2'/>
 
-            <Col className='c2' span={10} offset={1}>
-            <img src= {require('../Components/images/recording.gif')}   className='recordingGif'/>
-            </Col>
-          </Row>
-          
+           </div>
+
+           </Col>
+         </Row>
+        
         </div>
+
+        {/* <Footer/> */}
        </> 
   )
 }

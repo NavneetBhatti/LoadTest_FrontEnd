@@ -161,7 +161,7 @@ padding-bottom:50px;
   width:30%;
   height:70px;
   margin-left: 35%;
-  margin-top: 30px;
+  margin-top: 60px;
   margin-bottom: 30px;
   font-size: 20px;
   /* padding:5px; */
@@ -189,6 +189,21 @@ Button{
     padding:50px;
     margin-left: 120px; 
     margin-right:120px; 
+}
+.footer{
+  /* style={{backgroundColor:"#E8E8E8" ,padding:"25", marginTop:"80px"}} */
+  background-color:#E8E8E8;
+  padding:20px;
+  margin-top: 250px;
+}
+.recordingGif2{
+  width:65% ;
+  height:350px ;
+  /* margin-top:50px; */
+  
+  }
+.div2{
+  margin-top: 60px;
 }
   
 
