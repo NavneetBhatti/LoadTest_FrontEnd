@@ -161,7 +161,7 @@ const columns = [
              Details
           </Button>
 
-          <Link to={`/load/${record.key}/${record.name}`}>
+          <Link to={`/load?id=${record.key}&name=${record.name}`}>
               <Button type="primary"   onClick={() => {onAddRecord(record); }} style={{marginLeft:"15px"}}>
                 Create Load Test
               </Button>
