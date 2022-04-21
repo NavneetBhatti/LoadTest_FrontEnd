@@ -157,17 +157,7 @@ padding-bottom:50px;
 /* img{
   border:2px solid red;
 } */
-.downloadBtn{
-  width:30%;
-  height:70px;
-  margin-left: 35%;
-  margin-top: 60px;
-  margin-bottom: 30px;
-  font-size: 20px;
-  /* padding:5px; */
-  /* border-radius: 6px; */
-  
-}
+
 
 Button{
   border-radius: 6px !important;
@@ -202,8 +192,56 @@ Button{
   /* margin-top:50px; */
   
   }
+  .recordingGif3{
+    width:65% ;
+    height:350px ;
+    margin-left: 250px;
+    /* margin-top:50px; */
+  }  
+  
 .div2{
   margin-top: 60px;
+}
+.downloadBtn{
+  width:40%;
+  height:70px;
+  /* margin-left: 35%;
+  margin-top: 60px;
+  margin-bottom: 30px; */
+  font-size: 20px;
+  padding:5px;
+  /* border-radius: 6px; */
+  margin-left: 315px;;
+  
+}
+
+.btnRow{
+  background-color: #E8E8E8	;
+  width: 80%;
+  margin-left:140px;
+  padding:50px;
+  margin-top: 70px;
+}
+.detailsBtn{
+  width:15%;
+  height:60px;
+  font-size: 20px;
+  margin-left: 17%;
+  margin-right: 50%;
+  margin-top: 80px;
+  margin-bottom: -100px;
+
+}
+
+.details{
+  width:50% ;
+  height:350px ;
+  /* margin-left: 250px; */
+  border:1px solid grey;
+  /* margin-top:50px; */
+}  
+.detailPage{
+  margin-left:10%;
 }
   
 

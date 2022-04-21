@@ -11,6 +11,8 @@ import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer";
 import Recordings from "./pages/Recordings";
 import Home from "./pages/Home";
+import Details from "./pages/Details";
+
 
 
 
@@ -28,6 +30,8 @@ const App = () => {
             {/* <Route exact path="/load" component={CreateTest} /> */}
 
             <Route exact path="/recording" component={Recordings} />
+            <Route exact path="/details" component={Details} />
+
         </Switch>
          <Footer/>
     </Router>
