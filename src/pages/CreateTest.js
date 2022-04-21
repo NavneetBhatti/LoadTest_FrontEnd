@@ -38,25 +38,22 @@ const CreateTest = ({ state }) => {
   const name = new URLSearchParams(search).get('name');
   const [addComment, { data }] = useMutation(ADD_COMMENT);
   const [loadtestName, setLoadtesName] = useState(new Date().toLocaleString());
-  let navigate = useHistory();
-
+  const history = useHistory();
 
 
 
   const onSubmit = (values) => {
     console.log("----------hello ----------")
     console.log(values)
+
     // e.preventDefault();
     addComment({
       variables: { name: values.name, recordId: id, noOfUsers: values.noOfUsers, totalMints: values.totalMints }
 
     })
-    console.log("test3-----");
-    alert("Test added successfully")
-    navigate.push('/tests');
 
+    history.push('/tests');
   }
-
 
 
 

@@ -8,6 +8,7 @@ import {
 import AllLoadTest from './pages/AllLoadTest';
 import CreateTest from './pages/CreateTest';
 import Navbar from "./Components/Navbar/Navbar";
+import Footer from "./Components/Footer";
 import Recordings from "./pages/Recordings";
 import Home from "./pages/Home";
 
@@ -28,6 +29,7 @@ const App = () => {
 
             <Route exact path="/recording" component={Recordings} />
         </Switch>
+         <Footer/>
     </Router>
 
     
