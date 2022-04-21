@@ -49,7 +49,7 @@ const Home = () => {
              <div style={{ paddingLeft:"35%",paddingRight:"10%",paddingTop:"10%"}}>
              <h1>Test Creation</h1>
               <h3>Create Test in Minutes</h3>
-              <h3>Creating Load Test in Loadtest is simple and easy to use. To create Load test,create Load test button in Recording page and select the concurrent users and duration of test.It will create the test nad run it from Load test page. 
+              <h3>Creating Load Test in Loadtest is simple and easy to use. To create Load test,Click on Create Load test button in Recording page and select the concurrent users and duration of test.It will create the test and you can run it from Load test page. 
              
               </h3>
              </div>
