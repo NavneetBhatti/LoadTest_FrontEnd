@@ -53,8 +53,8 @@ const CreateTest=({state})=>
           variables : {name: values.name, recordId:id, noOfUsers:values.noOfUsers, totalMints:values.totalMints }
 
         })
-                // console.log("test3-----");
-                // alert("Test added successfully")
+                console.log("test3-----");
+                alert("Test added successfully")
 
     }
 
