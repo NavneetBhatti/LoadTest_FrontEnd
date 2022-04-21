@@ -41,20 +41,26 @@ const CreateTest=({state})=>
 
 
   const[test, setTest] =useState({})
-  
+  const history = useHistory();
+
 
 
 
     const onSubmit =(values) => {
         console.log("----------hello ----------")
         console.log(values)
+
         // e.preventDefault();
         addComment({
           variables : {name: values.name, recordId:id, noOfUsers:values.noOfUsers, totalMints:values.totalMints }
 
         })
-                console.log("test3-----");
-                alert("Test added successfully")
+        
+        history.push('/tests');
+
+
+                // console.log("test3-----");
+                // alert("Test added successfully")
 
     }
 
