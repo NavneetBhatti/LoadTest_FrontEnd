@@ -1,6 +1,15 @@
 import "../App.css";
-import { Form, Button, Checkbox, DatePicker, Input, Select, Space, TimePicker } from "antd";
-import React from 'react';
+import {
+  Form,
+  Button,
+  Checkbox,
+  DatePicker,
+  Input,
+  Select,
+  Space,
+  TimePicker,
+} from "antd";
+import React from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { useLocation, useHistory } from "react-router-dom";
@@ -8,77 +17,77 @@ import { useState, useEffect } from "react";
 import { Row, Col } from "antd";
 import { Link } from "react-router-dom";
 
-
-
-
-
-
-
-const ADD_COMMENT = gql`
-mutation($name: String!, $recordId: String!, $noOfUsers: Int!, $totalMints:Int!){
-  addLoadTest(input: {
-    name: $name
-		recordId:$recordId
-    noOfUsers: $noOfUsers
-    totalMints: $totalMints
-  }){
-    id
-    name
-    status
-    totalMints
-    noOfUsers
+const ADD_Test = gql`
+  mutation (
+    $name: String!
+    $recordId: String!
+    $noOfUsers: Int!
+    $totalMints: Int!
+  ) {
+    addLoadTest(
+      input: {
+        name: $name
+        recordId: $recordId
+        noOfUsers: $noOfUsers
+        totalMints: $totalMints
+      }
+    ) {
+      id
+      name
+      status
+      totalMints
+      noOfUsers
+    }
   }
-}
 `;
 
 const CreateTest = ({ state }) => {
   // const{ id ,name} = useParams();
   const search = useLocation().search;
-  const id = new URLSearchParams(search).get('id');
-  const name = new URLSearchParams(search).get('name');
-  const [addComment, { data }] = useMutation(ADD_COMMENT);
+  const id = new URLSearchParams(search).get("id");
+  const name = new URLSearchParams(search).get("name");
+  const [addComment, { data }] = useMutation(ADD_Test);
   const [loadtestName, setLoadtesName] = useState(new Date().toLocaleString());
   const history = useHistory();
 
-
-
   const onSubmit = (values) => {
-    console.log("----------hello ----------")
-    console.log(values)
+    console.log("----------hello ----------");
+    console.log(values);
 
     // e.preventDefault();
     addComment({
-      variables: { name: values.name, recordId: id, noOfUsers: values.noOfUsers, totalMints: values.totalMints }
+      variables: {
+        name: values.name,
+        recordId: id,
+        noOfUsers: values.noOfUsers,
+        totalMints: values.totalMints,
+      },
+    });
 
-    })
-
-    history.push('/tests');
-  }
-
-
+    history.push("/tests");
+  };
 
   return (
     <div className="App">
-
       <Row className="recordingHeading">
-        <Col span={20} offset={1} className="Col1" ><h1><b>Create Load Test for {name}</b></h1></Col>
-        {/* <Col span={6} offset={5} className="Col4" ><h2 className="h4"><b>{name}</b></h2></Col> */}
-
+        <Col span={20} offset={1} className="Col1">
+          <h1>
+            <b>Create Load Test for {name}</b>
+          </h1>
+        </Col>
       </Row>
 
       <Row className="row2">
         <Col span={4} offset={4} className="Col2">
-          {/* <h2><b>Test Settings</b></h2> */}
-          <Link to={'/recording'}>
-            <Button className="back" style={{ minWidth: '100px' }} >Back</Button>
+          <Link to={"/recording"}>
+            <Button className="back" style={{ minWidth: "100px" }}>
+              Back
+            </Button>
           </Link>
-
         </Col>
 
-
         <Col span={15} className="Col3">
-          <header >
-
+          <header>
             <Form
               autoComplete="off"
               layout="vertical"
@@ -86,13 +95,7 @@ const CreateTest = ({ state }) => {
               // wrapperCol={{ span: 5 }}
               onFinish={onSubmit}
             >
-
               <div className="formItems">
-
-                {/* <h2 className="rec">{name}</h2> */}
-
-                {/* <h2  style={{ marginRight: "152px" }}>{ current }  Load Test</h2><br/> */}
-
                 <Form.Item
                   name="name"
                   label="Laod Test Name"
@@ -106,8 +109,12 @@ const CreateTest = ({ state }) => {
                   ]}
                   hasFeedback
                 >
-                  {/* <Input placeholder="Type test name"  defaultValue={id}/> */}
-                  <Input defaultValue={`${new Date().toLocaleString()}`} autoFocus value={loadtestName} onChange={e => setLoadtesName(e.target.value)} />
+                  <Input
+                    defaultValue={`${new Date().toLocaleString()}`}
+                    autoFocus
+                    value={loadtestName}
+                    onChange={(e) => setLoadtesName(e.target.value)}
+                  />
                 </Form.Item>
 
                 <Form.Item
@@ -122,9 +129,7 @@ const CreateTest = ({ state }) => {
                   hasFeedback
                 >
                   <Input />
-
                 </Form.Item>
-
 
                 <Form.Item
                   name="totalMints"
@@ -138,31 +143,26 @@ const CreateTest = ({ state }) => {
                   hasFeedback
                 >
                   <Input />
-
                 </Form.Item>
-
               </div>
 
-
-
               <Form.Item wrapperCol={{ span: 4 }} className="formBtn">
-                {/* <Link to={'/tests'}> */}
-                <Button block type="primary" htmlType="submit" className="formBtn2" style={{ minWidth: '150px' }}>
+                <Button
+                  block
+                  type="primary"
+                  htmlType="submit"
+                  className="formBtn2"
+                  style={{ minWidth: "150px" }}
+                >
                   Create Load Test
                 </Button>
-                {/* </Link> */}
-
-
               </Form.Item>
-
             </Form>
           </header>
-
         </Col>
       </Row>
-
     </div>
   );
-}
+};
 
 export default CreateTest;

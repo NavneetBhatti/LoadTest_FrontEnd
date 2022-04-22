@@ -1,12 +1,11 @@
 import "antd/dist/antd.css";
 import "../App.css";
-import { Button, Table, Modal, Row, Col ,Input} from "antd";
+import { Button, Table, Modal, Row, Col, Input } from "antd";
 import { useState, useEffect } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import Search from "./Search";
 import { useQuery, gql } from "@apollo/client";
 import { useMutation } from "@apollo/react-hooks";
-
 
 export const GET_LoadTests = gql`
   query {
@@ -21,7 +20,6 @@ export const GET_LoadTests = gql`
   }
 `;
 
-
 export const Run_loadTest = gql`
   query ($id: String) {
     runLoadTest(id: $id)
@@ -35,104 +33,97 @@ export const delete_loadTest = gql`
 `;
 
 export const Edit_LoadTest = gql`
-mutation($id:String!,$name:String,$noOfUsers:Int,$totalMints:Int){
-  editLoadTest(input: {
-    id: $id
-    name:$name
-    noOfUsers:$noOfUsers
-    totalMints:$totalMints
+  mutation ($id: String!, $name: String, $noOfUsers: Int, $totalMints: Int) {
+    editLoadTest(
+      input: {
+        id: $id
+        name: $name
+        noOfUsers: $noOfUsers
+        totalMints: $totalMints
+      }
+    )
   }
-  )
-}
 `;
 
 function AllLoadTest() {
-  const { error, data, loading, refetch } = useQuery(GET_LoadTests,{
-      refetchQueries: [{ query: GET_LoadTests }],
+  const { error, data, loading, refetch } = useQuery(GET_LoadTests, {
+    refetchQueries: [{ query: GET_LoadTests }],
 
-    pollInterval:100,
-    onCompleted: () => console.log('----called---'),
-
+    pollInterval: 100,
+    onCompleted: () => console.log("----called---"),
   });
 
- //edit ------------------------------------------
- const [isEditing, setIsEditing] = useState(false);
- const [editingTest, setEditingTest] = useState(null);
- const[editLoadTest, { data5 }] = useMutation(Edit_LoadTest,{
-  refetchQueries :[
-    {
-      query: GET_LoadTests
-    }
-  ]
- });
- const onSubmit =(values) => {
-  console.log("----------hello ----------")
-  console.log(values)
-  // e.preventDefault();
-  editLoadTest({
-    variables : {id:editingTest.key, name: editingTest.name, noOfUsers:editingTest.noOfUsers, totalMints:editingTest.totalMints }
-
-  })
-  setIsEditing(false);
-
-}
-
-// edit end----------------------------------------------
-
+  //edit load test
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingTest, setEditingTest] = useState(null);
+  const [editLoadTest, { data5 }] = useMutation(Edit_LoadTest, {
+    refetchQueries: [
+      {
+        query: GET_LoadTests,
+      },
+    ],
+  });
+  const onSubmit = (values) => {
+    console.log("----------hello ----------");
+    console.log(values);
+    // e.preventDefault();
+    editLoadTest({
+      variables: {
+        id: editingTest.key,
+        name: editingTest.name,
+        noOfUsers: editingTest.noOfUsers,
+        totalMints: editingTest.totalMints,
+      },
+    });
+    setIsEditing(false);
+  };
 
 
   const [q, setQ] = useState("");
   const [state, setstate] = useState([]);
-  //const [loading2, setloading] = useState(true);
-  const [test, setTest] = useState('');
+  const [test, setTest] = useState("");
   const [deleteTest, setDeleteTest] = useState([]);
 
   const [loadTest, setLoadTest] = useState([]);
- 
+
   const { loading3, data3 } = useQuery(Run_loadTest, {
     variables: { id: test },
   });
 
   const { loading4, data4 } = useQuery(delete_loadTest, {
     variables: { id: deleteTest },
-    fetchPolicy:"cache-and-network",
+    fetchPolicy: "cache-and-network",
     refetchQueries: [{ query: GET_LoadTests }],
   });
 
-console.log("---test--")
+  console.log("---test--");
   useEffect(() => {
     getData();
     refetch();
-  }, [data4]); 
+  }, [data4]);
 
-  // useEffect(() => {
-  //   getData();
-  //   refetch();
-  // }, [data,loading,data3,data4,test,deleteTest]);
+  
 
   useEffect(() => {
-      refetch();
-      getData();
-      console.log("---useEffect running--")
-  }, [data,deleteTest,test]);
-
-
+    refetch();
+    getData();
+    console.log("---useEffect running--");
+  }, [data, deleteTest, test]);
 
   useEffect(() => {
-      const comInterval = setInterval(getData, 30000); //This will refresh the data at regularIntervals of refreshTime.
-      refetch();
-  
-      return () => clearInterval(comInterval); //Clear interval on component unmount to avoid memory leak
-  
-  }, []);  
+    const comInterval = setInterval(getData, 30000); //This will refresh the data at regularIntervals of refreshTime.
+    refetch();
+
+    return () => clearInterval(comInterval); //Clear interval on component unmount to avoid memory leak
+  }, []);
 
   //fetch data
   const getData = async () => {
     console.log("---getdata---");
     //setloading(true);
-    let copydata= [...data.allLoadTest];
-    console.log("------array2 ----")
-    console.log(copydata.reverse())
+    let copydata = [...data.allLoadTest];
+    console.log("------array2 ----");
+    console.log(copydata.reverse());
     setstate(
       copydata.map((row) => ({
         key: row.id.toString(),
@@ -150,13 +141,8 @@ console.log("---test--")
       key: "1",
       title: <b>Load Test Name</b>,
       dataIndex: "name",
-
     },
-    // {
-    //   key: "2",
-    //   title: "Recording",
-    //   dataIndex: "recordId",
-    // },
+    
     {
       key: "3",
       title: <b>Concurrennt Users</b>,
@@ -185,12 +171,11 @@ console.log("---test--")
               onClick={() => {
                 editTest(record);
               }}
-            />            <DeleteOutlined
+            />{" "}
+            <DeleteOutlined
               onClick={() => deleteLoadTest(record)}
               style={{ color: "red", marginLeft: 12 }}
             />
-          
-
             <Button
               type="primary"
               id={record.key}
@@ -230,7 +215,6 @@ console.log("---test--")
       okType: "danger",
       onOk: () => {
         setDeleteTest(record.key);
-        // window.location.reload(false);
         refetch();
       },
     });
@@ -245,14 +229,9 @@ console.log("---test--")
     setIsEditing(false);
     setEditingTest(null);
   };
-  
-
-  
 
   return (
     <div className="App">
-  
-
       <Row className="recordingHeading">
         <Col span={9} className="col4">
           <h1>
@@ -261,7 +240,6 @@ console.log("---test--")
         </Col>
       </Row>
 
-      {/* <Search search={search} /> */}
 
       <header className="App-header">
         <Table columns={columns} dataSource={state} className="tableR">
@@ -275,7 +253,7 @@ console.log("---test--")
           onCancel={() => {
             resetEditing();
           }}
-        onOk ={onSubmit}
+          onOk={onSubmit}
         >
           <Input
             value={editingTest?.key}
@@ -294,7 +272,9 @@ console.log("---test--")
                 return { ...pre, name: e.target.value };
               });
             }}
-          /><br/><br/>
+          />
+          <br />
+          <br />
 
           <h4>Concurrent Users</h4>
           <Input
@@ -304,7 +284,9 @@ console.log("---test--")
                 return { ...pre, noOfUsers: e.target.value };
               });
             }}
-          /><br/><br/>
+          />
+          <br />
+          <br />
 
           <h4>Duration</h4>
           <Input
